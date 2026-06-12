@@ -880,12 +880,11 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
 .tweaks-swatch[data-value="plum"]   { background: linear-gradient(45deg, #C54566, #614F9B); }
 .tweaks-swatch[data-value="indigo"] { background: linear-gradient(45deg, #7A6AC2, #3D355A); }
 
-/* Small helper: the "X" end-of-article glyph from the TRXL wordmark */
-.ep-x-glyph {
-  display: inline-block;
-  width: 18px; height: 18px;
-  color: var(--ep-accent);
+/* End-of-article brand mark — the TRXL X+ favicon */
+.ep-footer-mark {
+  display: block;
+  width: 20px; height: 20px;
+  border-radius: 3px;
   flex-shrink: 0;
-  filter: drop-shadow(0 0 6px var(--ep-accent));
+  position: relative; top: -0.25px;   /* align glyph center to text ink-center (measured) */
 }
-.ep-x-glyph svg { width: 100%; height: 100%; display: block; fill: currentColor; }
