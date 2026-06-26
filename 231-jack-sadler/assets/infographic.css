@@ -538,6 +538,7 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
   background: var(--ep-bg-2);
   border-right: 1px solid var(--ep-border);
   transition: background var(--dur) var(--ep-ease);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
 }
 .ep-stat:last-child { border-right: 0; }
 .ep-stat:hover { background: var(--ep-bg-3); }
@@ -625,11 +626,11 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
   padding: 48px 0;
   border-top: 1px solid var(--ep-border);
   align-items: start;
-  transition: transform 280ms var(--ep-ease);
+  transition: transform 280ms var(--ep-ease), background 280ms var(--ep-ease);
   will-change: transform;
 }
 .ep-analysis-card:last-child { border-bottom: 1px solid var(--ep-border); }
-.ep-analysis-card:hover { transform: translateX(14px); }
+.ep-analysis-card:hover { transform: translateX(6px); background: color-mix(in oklab, var(--ep-bg-2) 60%, transparent); }
 .ep-analysis-idx {
   font-family: var(--font-mono);
   font-size: 14px; color: var(--ep-fg-3);
@@ -678,6 +679,7 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
   border-bottom: 1px solid var(--ep-border);
   position: relative;
   transition: background var(--dur) var(--ep-ease);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
 }
 .ep-takeaway:nth-child(2n) { border-right: 0; }
 .ep-takeaway:nth-last-child(-n+2) { border-bottom: 0; }
@@ -877,7 +879,7 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
 .ep-btn {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 22px;
-  border-radius: 4px;
+  border-radius: var(--r-pill);
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 14px;
@@ -967,3 +969,28 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
   flex-shrink: 0;
   position: relative; top: -0.25px;   /* align glyph center to text ink-center (measured) */
 }
+
+/* =========================================================================
+   Cinematic blur-clear on hero headline + pull quote
+   Adds filter to the reveal transition for the two most impactful elements.
+   ------------------------------------------------------------------------- */
+html.js-motion .ep-hero h1.reveal,
+html.js-motion .ep-quote blockquote.reveal {
+  filter: blur(8px);
+  transition: opacity 700ms var(--ep-ease), transform 700ms var(--ep-ease), filter 820ms var(--ep-ease);
+}
+html.js-motion .ep-hero h1.reveal.is-in,
+html.js-motion .ep-quote blockquote.reveal.is-in {
+  filter: blur(0);
+}
+
+/* =========================================================================
+   Density — compact override (wires up the Tweaks panel toggle)
+   ------------------------------------------------------------------------- */
+[data-density="compact"] .ep-section { padding: 64px 0; }
+[data-density="compact"] .ep-hero { padding: 64px 0 80px; }
+[data-density="compact"] .ep-quote { padding: 80px 0; }
+[data-density="compact"] .ep-question { padding: 90px 0; }
+[data-density="compact"] .ep-stat { padding: 36px 24px; }
+[data-density="compact"] .ep-takeaway { padding: 24px 20px; }
+[data-density="compact"] .ep-cta { padding: 80px 0; }
