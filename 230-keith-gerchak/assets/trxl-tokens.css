@@ -5,9 +5,10 @@
 
 /* --- Fonts -------------------------------------------------------------- */
 /* Space Grotesk is used for the geometric, slightly condensed headline feel
-   that matches the TRXL wordmark. Inter is the workhorse for body copy.
-   JetBrains Mono for numeric/mono accents (timecodes, episode numbers). */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+   that matches the TRXL wordmark. Plus Jakarta Sans replaces Inter for body
+   copy — same readability, meaningfully more character. JetBrains Mono for
+   numeric/mono accents (timecodes, episode numbers). */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
   /* -----------------------------------------------------------------------
@@ -84,7 +85,7 @@
      TYPE — families, scale, weights
      ----------------------------------------------------------------------- */
   --font-display: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
-  --font-sans:    'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans:    'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Fluid scale (clamps — min / preferred / max) */
