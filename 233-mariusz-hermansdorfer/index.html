@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-accent="coral">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noai, noimageai">
+  <title>TRXL 233 — Spaces For People To Kiss</title>
+  <meta name="description" content="Mariusz Hermansdorfer on spinning jifto out of Henning Larsen and bringing sustainability analysis into the first week of design.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TRXL Podcast">
+  <meta property="og:title" content="TRXL 233 — Spaces For People To Kiss">
+  <meta property="og:description" content="Mariusz Hermansdorfer on spinning jifto out of Henning Larsen and bringing sustainability analysis into the first week of design.">
+  <meta property="og:url" content="https://assets.trxl.co/233-mariusz-hermansdorfer/">
+  <meta property="og:image" content="https://assets.trxl.co/233-mariusz-hermansdorfer/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="assets/trxl-tokens.css?v=11">
+  <link rel="stylesheet" href="assets/infographic.css?v=11">
+</head>
+<body>
+
+  <!-- ========================================================
+       STICKY NAV
+       ======================================================== -->
+  <nav class="ep-nav" id="epNav">
+    <div class="ep-nav-inner">
+      <div class="ep-nav-left">
+        <img src="assets/logo-white.png" alt="TRXL" class="ep-nav-logo" id="epNavLogo">
+        <div class="ep-nav-ep">
+          Episode <strong id="epNavNum"></strong>
+          <span style="margin:0 8px;opacity:.4">·</span>
+          <span id="epNavDate"></span>
+        </div>
+      </div>
+      <div class="ep-nav-right">
+        <a href="#listen" class="ep-btn ep-btn-ghost" style="padding:8px 14px;font-size:12px">Listen</a>
+      </div>
+    </div>
+    <div class="ep-nav-progress" id="epNavProgress"></div>
+  </nav>
+
+  <!-- ========================================================
+       HERO — Ep 233 dawn concept: warm light rising at the horizon,
+       data-point stars above. Sustainability at the first moment of design.
+       ======================================================== -->
+  <header class="ep-hero">
+    <div class="ep-hero-sky"></div>
+    <div class="ep233-field">
+      <div class="ep233-glow"></div>
+      <div class="ep233-horizon-line"></div>
+      <div class="ep233-particles">
+        <span style="--i:0; left:12%;  top:22%"></span>
+        <span style="--i:1; left:28%;  top:14%"></span>
+        <span style="--i:2; left:44%;  top:9%"></span>
+        <span style="--i:3; left:61%;  top:17%"></span>
+        <span style="--i:4; left:75%;  top:11%"></span>
+        <span style="--i:5; left:88%;  top:26%"></span>
+        <span style="--i:6; left:7%;   top:42%"></span>
+        <span style="--i:7; left:35%;  top:35%"></span>
+        <span style="--i:8; left:55%;  top:30%"></span>
+        <span style="--i:9; left:82%;  top:38%"></span>
+        <span style="--i:10;left:20%;  top:55%"></span>
+        <span style="--i:11;left:68%;  top:50%"></span>
+      </div>
+    </div>
+    <div class="ep-container ep-hero-inner">
+      <div class="ep-eyebrow reveal">
+        <span class="dot"></span>
+        TRXL Podcast
+        <span class="dot dot-sm"></span>
+        <span class="num" id="heroEpNum"></span>
+        <span class="dot dot-sm"></span>
+        <span id="heroDate"></span>
+      </div>
+      <h1 class="reveal delay-1" id="heroTitle"></h1>
+      <p class="ep-hero-subtitle reveal delay-2" id="heroSubtitle"></p>
+      <div class="ep-guest reveal delay-3">
+        <div class="ep-guest-avatar" id="heroAvatar"></div>
+        <div class="ep-guest-text">
+          <div class="ep-guest-name" id="heroGuestName"></div>
+          <div class="ep-guest-role" id="heroGuestRole"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       CENTRAL ARGUMENT
+       ======================================================== -->
+  <section class="ep-section ep-argument">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>The central argument</span> <span class="idx">01 / 07</span></div>
+      <div class="reveal delay-1">
+        <p id="argumentText"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       PULL QUOTE
+       ======================================================== -->
+  <section class="ep-quote">
+    <div class="ep-container">
+      <blockquote class="reveal" id="quoteText"></blockquote>
+      <span class="ep-attr reveal delay-1" id="quoteAttr"></span>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       STATS
+       ======================================================== -->
+  <section class="ep-section">
+    <div class="ep-container-wide">
+      <div class="ep-kicker reveal"><span>By the numbers</span> <span class="idx">02 / 07</span></div>
+      <div class="ep-stats-grid reveal delay-1" id="statsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       QUESTION
+       ======================================================== -->
+  <section class="ep-question">
+    <div class="ep-container">
+      <div class="reveal">
+        <div class="mark">?</div>
+        <p id="questionText"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       ANALYSIS
+       ======================================================== -->
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>Episode analysis</span> <span class="idx">03 / 07</span></div>
+      <div class="ep-analysis" id="analysisList"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TAKEAWAYS
+       ======================================================== -->
+  <section class="ep-section ep-takeaways">
+    <div class="ep-container-wide">
+      <div class="ep-kicker reveal"><span>Practical takeaways</span> <span class="idx">04 / 07</span></div>
+      <div class="ep-takeaways-grid reveal delay-1" id="takeawaysGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       INSIGHTS
+       ======================================================== -->
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>Key insights</span> <span class="idx">05 / 07</span></div>
+      <div class="ep-insights" id="insightsList"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       BOTTOM LINE
+       ======================================================== -->
+  <section class="ep-section ep-bottomline">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>The bottom line</span> <span class="idx">06 / 07</span></div>
+      <div class="ep-bottomline-grid">
+        <div class="ep-bottomline-portrait reveal" id="bottomPortraitBlock">
+          <div class="ep-portrait-frame">
+            <img id="bottomPortraitImg" src="" alt="" />
+          </div>
+          <div class="ep-portrait-caption">
+            <div class="ep-portrait-name" id="bottomPortraitName"></div>
+            <div class="ep-portrait-role" id="bottomPortraitRole"></div>
+          </div>
+        </div>
+        <div class="ep-bottomline-text">
+          <p class="reveal delay-1" id="bottomLineText"></p>
+          <div class="closing reveal delay-2" id="closingQuoteText"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CTA
+       ======================================================== -->
+  <section class="ep-cta" id="listen">
+    <div class="ep-container">
+      <div class="ep-kicker reveal" style="justify-content:center"><span>Full episode</span> <span class="idx">07 / 07</span></div>
+      <h2 class="reveal delay-1">Hear the whole conversation with <span id="ctaGuestName"></span></h2>
+      <div class="ep-cta-buttons reveal delay-2">
+        <a id="ctaListen" class="ep-btn ep-btn-primary" href="#" target="_blank" rel="noopener">
+          Listen to episode
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a id="ctaNewsletter" class="ep-btn ep-btn-ghost" href="#" target="_blank" rel="noopener">
+          Read the newsletter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="ep-footer">
+    <div class="ep-footer-brand">
+      <img class="ep-footer-mark" src="assets/favicon.png" alt="TRXL" />
+      <span>TRXL Podcast</span>
+      <span class="dot">·</span>
+      <span>Architecture × Technology</span>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       TWEAKS PANEL
+       ======================================================== -->
+  <div class="tweaks-panel" id="tweaksPanel" aria-hidden="true">
+    <div class="tweaks-title">Tweaks</div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Theme</span>
+      <div class="tweaks-opts" data-control="theme">
+        <button class="tweaks-chip" data-value="dark">Dark</button>
+        <button class="tweaks-chip" data-value="light">Light</button>
+      </div>
+    </div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Accent</span>
+      <div class="tweaks-opts" data-control="accent">
+        <button class="tweaks-swatch" data-value="coral" title="Coral"></button>
+        <button class="tweaks-swatch" data-value="plum" title="Plum"></button>
+        <button class="tweaks-swatch" data-value="indigo" title="Indigo"></button>
+      </div>
+    </div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Motion</span>
+      <div class="tweaks-opts" data-control="motion">
+        <button class="tweaks-chip" data-value="on">On</button>
+        <button class="tweaks-chip" data-value="off">Off</button>
+      </div>
+    </div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Density</span>
+      <div class="tweaks-opts" data-control="density">
+        <button class="tweaks-chip" data-value="spacious">Spacious</button>
+        <button class="tweaks-chip" data-value="compact">Compact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       CONTENT + LOGIC
+       ======================================================== -->
+  <!-- UPDATE THIS to point at the new episode content file -->
+  <script src="content/episode-233.js"></script>
+  <script>
+    /* ----- Tweakable defaults (rewritable by host) ----- */
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "theme": "dark",
+      "accent": "coral",
+      "motion": "on",
+      "density": "spacious"
+    }/*EDITMODE-END*/;
+
+    const state = { ...TWEAK_DEFAULTS };
+
+    /* ----- Render content ----- */
+    const ep = window.TRXL_EPISODE;
+    function render() {
+      // Nav
+      document.getElementById('epNavNum').textContent = ep.number;
+      document.getElementById('epNavDate').textContent = ep.date;
+
+      // Hero
+      document.getElementById('heroEpNum').textContent = 'Ep ' + ep.number;
+      document.getElementById('heroDate').textContent = ep.date;
+      // Smart title: wrap last word in <em> for gradient highlight
+      const title = ep.title;
+      const parts = title.split(' ');
+      if (parts.length > 2) {
+        const emWord = parts[parts.length - 2];
+        parts[parts.length - 2] = `<em>${emWord}</em>`;
+        document.getElementById('heroTitle').innerHTML = parts.join(' ');
+      } else {
+        document.getElementById('heroTitle').textContent = title;
+      }
+      document.getElementById('heroSubtitle').textContent = ep.subtitle;
+
+      // Guest
+      const initials = ep.guest.name.split(' ').map(w => w[0]).slice(0,2).join('');
+      const avatar = document.getElementById('heroAvatar');
+      if (ep.guest.portrait) {
+        avatar.innerHTML = `<img src="${ep.guest.portrait}" alt="${ep.guest.name}">`;
+      } else {
+        avatar.textContent = initials;
+      }
+      document.getElementById('heroGuestName').textContent = ep.guest.name;
+      document.getElementById('heroGuestRole').textContent = `${ep.guest.role}, ${ep.guest.firm}`;
+
+      // Central argument
+      document.getElementById('argumentText').textContent = ep.centralArgument;
+
+      // Quote
+      document.getElementById('quoteText').textContent = `"${ep.pullQuote.text}"`;
+      document.getElementById('quoteAttr').textContent = '— ' + ep.pullQuote.attribution;
+
+      // Stats
+      const statsGrid = document.getElementById('statsGrid');
+      statsGrid.innerHTML = ep.stats.map((s, i) => `
+        <div class="ep-stat">
+          <span class="ep-stat-index">0${i+1}</span>
+          <span class="ep-stat-num" data-value="${s.value}">${s.value}</span>
+          <div class="ep-stat-label">${s.label}</div>
+        </div>
+      `).join('');
+
+      // Question
+      document.getElementById('questionText').textContent = ep.question;
+
+      // Analysis
+      document.getElementById('analysisList').innerHTML = ep.analysis.map((a, i) => `
+        <div class="ep-analysis-card">
+          <div class="ep-analysis-idx">0${i+1}</div>
+          <div>
+            <h3>${a.title}</h3>
+            <p>${a.body}</p>
+          </div>
+        </div>
+      `).join('');
+
+      // Takeaways
+      document.getElementById('takeawaysGrid').innerHTML = ep.takeaways.map((t, i) => `
+        <div class="ep-takeaway">
+          <span class="ep-takeaway-num">Step 0${i+1}</span>
+          <p>${t}</p>
+        </div>
+      `).join('');
+
+      // Insights
+      document.getElementById('insightsList').innerHTML = ep.insights.map((ins, i) => `
+        <div class="ep-insight reveal">
+          <div class="ep-insight-num">0${i+1}</div>
+          <div class="ep-insight-body">
+            <h4>${ins.title}</h4>
+            <p>${ins.body}</p>
+          </div>
+          <div class="ep-insight-mark"></div>
+        </div>
+      `).join('');
+
+      // Bottom line
+      document.getElementById('bottomLineText').textContent = ep.bottomLine;
+      document.getElementById('closingQuoteText').textContent = '"' + ep.closingQuote + '"';
+
+      // Bottom portrait
+      const bpBlock = document.getElementById('bottomPortraitBlock');
+      const bpImg = document.getElementById('bottomPortraitImg');
+      if (ep.guest.portrait) {
+        bpImg.src = ep.guest.portrait;
+        bpImg.alt = ep.guest.name;
+      } else {
+        bpBlock.style.display = 'none';
+      }
+      document.getElementById('bottomPortraitName').textContent = ep.guest.name;
+      document.getElementById('bottomPortraitRole').textContent = `${ep.guest.role}, ${ep.guest.firm}`;
+
+      // CTA
+      document.getElementById('ctaGuestName').textContent = ep.guest.name;
+      document.getElementById('ctaListen').href = ep.links.listen;
+      document.getElementById('ctaNewsletter').href = ep.links.newsletter;
+
+      // Page title
+      document.title = `TRXL ${ep.number} — ${ep.title}`;
+
+      // Logo should swap with theme
+      updateLogo();
+    }
+    function updateLogo() {
+      const logo = document.getElementById('epNavLogo');
+      logo.src = state.theme === 'light' ? 'assets/logo-black.png' : 'assets/logo-white.png';
+    }
+
+    /* ----- Reveal on scroll -----
+       Fallback to a plain scroll listener: IntersectionObserver has been
+       unreliable inside our preview iframe (never fires even with the
+       target clearly on-screen). This always runs in the same frame the
+       user can see the element. */
+    function setupReveal() {
+      const items = Array.from(document.querySelectorAll('.reveal'));
+      if (state.motion === 'off') {
+        document.documentElement.classList.remove('js-motion');
+        items.forEach(el => el.classList.add('is-in'));
+        return;
+      }
+      document.documentElement.classList.add('js-motion');
+      const check = () => {
+        const vh = window.innerHeight;
+        for (const el of items) {
+          if (el.classList.contains('is-in')) continue;
+          const r = el.getBoundingClientRect();
+          if (r.top < vh - 80 && r.bottom > 0) el.classList.add('is-in');
+        }
+      };
+      check();
+      window.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('resize', check);
+    }
+
+    /* ----- Stat counter animation ----- */
+    function animateStats() {
+      const nums = document.querySelectorAll('.ep-stat-num');
+      nums.forEach(el => {
+        const final = el.dataset.value;
+        // Extract numeric part
+        const match = final.match(/([\d.]+)/);
+        if (!match || state.motion === 'off') { el.textContent = final; return; }
+        const target = parseFloat(match[1]);
+        const prefix = final.substring(0, match.index);
+        const suffix = final.substring(match.index + match[1].length);
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            io.unobserve(el);
+            const dur = 1400;
+            const start = performance.now();
+            const hasDecimal = match[1].includes('.');
+            function frame(now) {
+              const t = Math.min(1, (now - start) / dur);
+              const eased = 1 - Math.pow(1 - t, 3);
+              const v = target * eased;
+              el.textContent = prefix + (hasDecimal ? v.toFixed(1) : Math.round(v)) + suffix;
+              if (t < 1) requestAnimationFrame(frame); else el.textContent = final;
+            }
+            requestAnimationFrame(frame);
+          });
+        }, { threshold: 0.4 });
+        io.observe(el);
+      });
+    }
+
+    /* ----- Nav scroll progress ----- */
+    function setupNavScroll() {
+      const nav = document.getElementById('epNav');
+      const progress = document.getElementById('epNavProgress');
+      function onScroll() {
+        const y = window.scrollY;
+        nav.classList.toggle('is-scrolled', y > 10);
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const p = h > 0 ? Math.min(1, y / h) : 0;
+        progress.style.setProperty('--scroll-progress', p);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    /* ----- Tweaks controls ----- */
+    function applyState() {
+      document.documentElement.dataset.theme = state.theme;
+      document.documentElement.dataset.accent = state.accent;
+      document.documentElement.dataset.density = state.density;
+      document.documentElement.dataset.motion = state.motion;
+      // Update chip active states
+      document.querySelectorAll('.tweaks-opts').forEach(group => {
+        const key = group.dataset.control;
+        group.querySelectorAll('[data-value]').forEach(b => {
+          b.classList.toggle('is-active', b.dataset.value === state[key]);
+        });
+      });
+      updateLogo();
+    }
+    function setupTweaks() {
+      document.querySelectorAll('.tweaks-opts').forEach(group => {
+        const key = group.dataset.control;
+        group.querySelectorAll('[data-value]').forEach(b => {
+          b.addEventListener('click', () => {
+            state[key] = b.dataset.value;
+            applyState();
+            window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: state[key] } }, '*');
+          });
+        });
+      });
+
+      // Edit-mode protocol
+      window.addEventListener('message', (e) => {
+        if (!e.data || !e.data.type) return;
+        if (e.data.type === '__activate_edit_mode') {
+          document.getElementById('tweaksPanel').classList.add('is-open');
+        } else if (e.data.type === '__deactivate_edit_mode') {
+          document.getElementById('tweaksPanel').classList.remove('is-open');
+        }
+      });
+      window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    }
+
+    /* ----- Go ----- */
+    render();
+    applyState();
+    setupReveal();
+    animateStats();
+    setupNavScroll();
+    setupTweaks();
+  </script>
+</body>
+</html>
