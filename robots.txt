@@ -6,37 +6,55 @@
 # Slackbot, Twitterbot) are intentionally NOT blocked so card previews work.
 
 # --- AI training / scraping crawlers: blocked ---
+# Exception: /why-trxl/ (public sponsor page) is allowed for all bots — being
+# readable and citable by AI answer engines is the point of that page.
 User-agent: GPTBot
+Allow: /why-trxl/
 Disallow: /
 User-agent: ChatGPT-User
+Allow: /why-trxl/
 Disallow: /
 User-agent: OAI-SearchBot
+Allow: /why-trxl/
 Disallow: /
 User-agent: ClaudeBot
+Allow: /why-trxl/
 Disallow: /
 User-agent: anthropic-ai
+Allow: /why-trxl/
 Disallow: /
 User-agent: Claude-Web
+Allow: /why-trxl/
 Disallow: /
 User-agent: Google-Extended
+Allow: /why-trxl/
 Disallow: /
 User-agent: Applebot-Extended
+Allow: /why-trxl/
 Disallow: /
 User-agent: CCBot
+Allow: /why-trxl/
 Disallow: /
 User-agent: PerplexityBot
+Allow: /why-trxl/
 Disallow: /
 User-agent: Bytespider
+Allow: /why-trxl/
 Disallow: /
 User-agent: Amazonbot
+Allow: /why-trxl/
 Disallow: /
 User-agent: Meta-ExternalAgent
+Allow: /why-trxl/
 Disallow: /
 User-agent: Diffbot
+Allow: /why-trxl/
 Disallow: /
 User-agent: cohere-ai
+Allow: /why-trxl/
 Disallow: /
 User-agent: Timpibot
+Allow: /why-trxl/
 Disallow: /
 
 # --- Everyone else: may crawl; every page carries a noindex meta tag ---
