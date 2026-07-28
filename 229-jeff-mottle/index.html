@@ -16,8 +16,8 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/logo-white.png">
-  <link rel="stylesheet" href="assets/trxl-tokens.css?v=11">
-  <link rel="stylesheet" href="assets/infographic.css?v=11">
+  <link rel="stylesheet" href="assets/trxl-tokens.css?v=12">
+  <link rel="stylesheet" href="assets/infographic.css?v=12">
   <style>
     /* =========================================================
        EP 229 — 3-COLUMN CENTRAL ARGUMENT
@@ -477,12 +477,13 @@
       // Hero
       document.getElementById('heroEpNum').textContent = 'Ep ' + ep.number;
       document.getElementById('heroDate').textContent = ep.date;
-      // Smart title: wrap second-to-last word in <em> for gradient highlight
+      // Smart title: wrap the LAST word in <em> for gradient highlight
+      // (ep 229: "…Before Anyone Was Thirsty" — "Thirsty" is the word that lands)
       const title = ep.title;
       const parts = title.split(' ');
       if (parts.length > 2) {
-        const emWord = parts[parts.length - 2];
-        parts[parts.length - 2] = `<em>${emWord}</em>`;
+        const emWord = parts[parts.length - 1];
+        parts[parts.length - 1] = `<em>${emWord}</em>`;
         document.getElementById('heroTitle').innerHTML = parts.join(' ');
       } else {
         document.getElementById('heroTitle').textContent = title;
