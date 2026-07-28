@@ -16,8 +16,8 @@
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="assets/logo-white.png">
-  <link rel="stylesheet" href="assets/trxl-tokens.css?v=9">
-  <link rel="stylesheet" href="assets/infographic.css?v=9">
+  <link rel="stylesheet" href="assets/trxl-tokens.css?v=11">
+  <link rel="stylesheet" href="assets/infographic.css?v=11">
   <style>
     /* =========================================================
        EP 229 — 3-COLUMN CENTRAL ARGUMENT
@@ -313,10 +313,27 @@
   <!-- ========================================================
        INSIGHTS
        ======================================================== -->
-  <section class="ep-section">
+  <section class="ep-section ep-insights-section" id="insightsSection">
     <div class="ep-container">
       <div class="ep-kicker reveal"><span>Key insights</span> <span class="idx">05 / 07</span></div>
+
+      <!-- Plain list: the no-JS fallback and the PDF/print version -->
       <div class="ep-insights" id="insightsList"></div>
+
+      <!-- Swipeable card stack: screen only, built by JS -->
+      <div class="ep-stack-wrap">
+        <div class="ep-stack" id="epStack" role="group" aria-roledescription="carousel" aria-label="Key insights"></div>
+        <div class="ep-stack-controls">
+          <button class="ep-stack-btn" id="stackPrev" aria-label="Previous insight">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <div class="ep-stack-dots" id="stackDots"></div>
+          <button class="ep-stack-btn" id="stackNext" aria-label="Next insight">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="ep-stack-hint">Drag a card · or use ← →</div>
+      </div>
     </div>
   </section>
 
@@ -671,6 +688,122 @@
       window.parent.postMessage({ type: '__edit_mode_available' }, '*');
     }
 
+    /* ----- Key insights as a swipeable card stack -----
+       Screen only. If this never runs, the plain list stays visible. */
+    function setupInsightStack() {
+      const items = ep.insights;
+      const stage = document.getElementById('epStack');
+      const dotsEl = document.getElementById('stackDots');
+      const N = items.length;
+
+      // order[0] is the top card. Advancing rotates the array.
+      let order = items.map((_, i) => i);
+
+      stage.innerHTML = items.map((ins, i) => `
+        <article class="ep-card" data-i="${i}" aria-label="Insight ${i + 1} of ${N}">
+          <div class="ep-card-head">
+            <span class="ep-card-num">0${i + 1}</span>
+            <span class="ep-card-of">Key insight</span>
+          </div>
+          <div>
+            <h4>${ins.title}</h4>
+            <p>${ins.body}</p>
+          </div>
+          <div class="ep-card-rule"></div>
+        </article>
+      `).join('');
+
+      dotsEl.innerHTML = items.map((ins, i) =>
+        `<button class="ep-stack-dot" data-i="${i}" aria-label="Go to insight ${i + 1}: ${ins.title}"></button>`
+      ).join('');
+
+      const cards = [...stage.querySelectorAll('.ep-card')];
+      const dots  = [...dotsEl.querySelectorAll('.ep-stack-dot')];
+
+      function layout() {
+        order.forEach((cardIdx, pos) => {
+          const card = cards[cardIdx];
+          card.dataset.pos = pos;
+          card.style.zIndex = N - pos;
+          card.style.opacity = pos > 3 ? 0 : 1 - pos * 0.16;
+          card.style.transform = `translate3d(0, ${pos * 30}px, 0) scale(${1 - pos * 0.05})`;
+          card.setAttribute('aria-hidden', pos === 0 ? 'false' : 'true');
+        });
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === order[0]));
+      }
+
+      // Fly the top card out, then send it to the back (dir: 1 right, -1 left)
+      function advance(dir) {
+        const card = cards[order[0]];
+        card.style.transition = 'transform 340ms var(--ep-ease), opacity 340ms linear';
+        card.style.transform = `translate3d(${dir * 620}px, -40px, 0) rotate(${dir * 18}deg)`;
+        card.style.opacity = 0;
+        order = [...order.slice(1), order[0]];
+        setTimeout(() => { card.style.transition = ''; layout(); }, 320);
+        layout();
+      }
+
+      // Pull the last card back to the front from the side it left
+      function retreat() {
+        const last = order[N - 1];
+        order = [last, ...order.slice(0, N - 1)];
+        const card = cards[last];
+        card.style.transition = 'none';
+        card.style.transform = 'translate3d(-620px, -40px, 0) rotate(-18deg)';
+        card.style.opacity = 0;
+        requestAnimationFrame(() => { card.style.transition = ''; layout(); });
+      }
+
+      function goTo(target) {
+        let guard = 0;
+        while (order[0] !== target && guard++ < N) advance(1);
+      }
+
+      let drag = null;
+      stage.addEventListener('pointerdown', (e) => {
+        const card = e.target.closest('.ep-card');
+        if (!card || card.dataset.pos !== '0') return;
+        drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, card, dx: 0 };
+        card.classList.add('is-dragging');
+        card.setPointerCapture(e.pointerId);
+      });
+
+      stage.addEventListener('pointermove', (e) => {
+        if (!drag || e.pointerId !== drag.id) return;
+        drag.dx = e.clientX - drag.x0;
+        const dy = (e.clientY - drag.y0) * 0.25;
+        drag.card.style.transform =
+          `translate3d(${drag.dx}px, ${dy}px, 0) rotate(${drag.dx * 0.045}deg)`;
+        drag.card.style.setProperty('--tint', Math.min(Math.abs(drag.dx) / 140, 1));
+        drag.card.style.setProperty('--tint-x', drag.dx > 0 ? '85%' : '15%');
+      });
+
+      function endDrag(e) {
+        if (!drag || (e && e.pointerId !== drag.id)) return;
+        const { card, dx } = drag;
+        card.classList.remove('is-dragging');
+        card.style.removeProperty('--tint');
+        drag = null;
+        if (Math.abs(dx) > 110) advance(Math.sign(dx));
+        else layout();                       // snap back
+      }
+      stage.addEventListener('pointerup', endDrag);
+      stage.addEventListener('pointercancel', endDrag);
+
+      document.getElementById('stackNext').addEventListener('click', () => advance(1));
+      document.getElementById('stackPrev').addEventListener('click', retreat);
+      dots.forEach((d) => d.addEventListener('click', () => goTo(+d.dataset.i)));
+
+      stage.tabIndex = 0;
+      stage.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { advance(1); e.preventDefault(); }
+        if (e.key === 'ArrowLeft')  { retreat();  e.preventDefault(); }
+      });
+
+      layout();
+      document.getElementById('insightsSection').classList.add('has-stack');
+    }
+
     /* ----- Go ----- */
     render();
     applyState();
@@ -678,6 +811,7 @@
     animateStats();
     setupNavScroll();
     setupTweaks();
+    setupInsightStack();
   </script>
 </body>
 </html>
