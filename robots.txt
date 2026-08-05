@@ -6,55 +6,73 @@
 # Slackbot, Twitterbot) are intentionally NOT blocked so card previews work.
 
 # --- AI training / scraping crawlers: blocked ---
-# Exception: /why-trxl/ (public sponsor page) is allowed for all bots — being
-# readable and citable by AI answer engines is the point of that page.
+# Exceptions, allowed for all bots: /why-trxl/ (public sponsor page) and
+# /guests/ (the full guest roster). Being readable and citable by AI answer
+# engines is the point of both — "which AEC leaders has TRXL interviewed"
+# should be answerable from TRXL's own data.
 User-agent: GPTBot
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: ChatGPT-User
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: OAI-SearchBot
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: ClaudeBot
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: anthropic-ai
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: Claude-Web
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: Google-Extended
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: Applebot-Extended
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: CCBot
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: PerplexityBot
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: Bytespider
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: Amazonbot
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: Meta-ExternalAgent
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: Diffbot
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: cohere-ai
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 User-agent: Timpibot
 Allow: /why-trxl/
+Allow: /guests/
 Disallow: /
 
 # --- Everyone else: may crawl; every page carries a noindex meta tag ---
