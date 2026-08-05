@@ -85,7 +85,9 @@ a { color: inherit; }
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: min(100%, 1248px);
+  /* Must match .guest-page's max-width exactly — the sheet scrolls over the
+     fixed hero, so any extra hero width shows as a sliver down both sides. */
+  width: min(100%, 1200px);
   height: 460px;
   overflow: hidden;
   z-index: 1;
