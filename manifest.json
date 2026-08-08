@@ -1,9 +1,50 @@
 [
-  { "number": 234, "slug": "234-havard-vasshaug", "title": "Here's to the Crazy Ones", "guest": "Håvard Vasshaug" },
-  { "number": 233, "slug": "233-mariusz-hermansdorfer", "title": "Spaces For People To Kiss", "guest": "Mariusz Hermansdorfer" },
-  { "number": 232, "slug": "232-tatjana-dzambazova", "title": "Bringing Joy Back to Architecture", "guest": "Tatjana Dzambazova" },
-  { "number": 231, "slug": "231-jack-sadler", "title": "Realized or Negotiated Away", "guest": "Jack Sadler" },
-  { "number": 230, "slug": "230-keith-gerchak", "title": "Rooms for Storytelling", "guest": "Keith Gerchak" },
-  { "number": 229, "slug": "229-jeff-mottle", "title": "Building the Water Cooler Before Anyone Was Thirsty", "guest": "Jeff Mottle" },
-  { "number": 228, "slug": "228-steve-burrows", "title": "What Did You Actually Do Today", "guest": "Steve Burrows" }
+  {
+    "number": 235,
+    "slug": "235-olson-kundig",
+    "title": "What 300 People Say When You Finally Ask",
+    "guest": "Marlene Chen & Blair Payson"
+  },
+  {
+    "number": 234,
+    "slug": "234-havard-vasshaug",
+    "title": "Here's to the Crazy Ones",
+    "guest": "Håvard Vasshaug"
+  },
+  {
+    "number": 233,
+    "slug": "233-mariusz-hermansdorfer",
+    "title": "Spaces For People To Kiss",
+    "guest": "Mariusz Hermansdorfer"
+  },
+  {
+    "number": 232,
+    "slug": "232-tatjana-dzambazova",
+    "title": "Bringing Joy Back to Architecture",
+    "guest": "Tatjana Dzambazova"
+  },
+  {
+    "number": 231,
+    "slug": "231-jack-sadler",
+    "title": "Realized or Negotiated Away",
+    "guest": "Jack Sadler"
+  },
+  {
+    "number": 230,
+    "slug": "230-keith-gerchak",
+    "title": "Rooms for Storytelling",
+    "guest": "Keith Gerchak"
+  },
+  {
+    "number": 229,
+    "slug": "229-jeff-mottle",
+    "title": "Building the Water Cooler Before Anyone Was Thirsty",
+    "guest": "Jeff Mottle"
+  },
+  {
+    "number": 228,
+    "slug": "228-steve-burrows",
+    "title": "What Did You Actually Do Today",
+    "guest": "Steve Burrows"
+  }
 ]

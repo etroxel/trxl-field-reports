@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-accent="coral">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="robots" content="noindex, nofollow, noai, noimageai">
+  <title>TRXL 235 — What 300 People Say When You Finally Ask</title>
+  <meta name="description" content="Marlene Chen and Blair Payson on the office-wide crit Olson Kundig refused to call an AI meeting, and what 300 people said when finally asked what wastes their time.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="TRXL Podcast">
+  <meta property="og:title" content="TRXL 235 — What 300 People Say When You Finally Ask">
+  <meta property="og:description" content="Marlene Chen and Blair Payson on the office-wide crit Olson Kundig refused to call an AI meeting, and what 300 people said when finally asked what wastes their time.">
+  <meta property="og:url" content="https://assets.trxl.co/235-olson-kundig/">
+  <meta property="og:image" content="https://assets.trxl.co/235-olson-kundig/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="assets/trxl-tokens.css?v=12">
+  <link rel="stylesheet" href="assets/field-report.css?v=12">
+</head>
+<body>
+
+  <!-- ========================================================
+       STICKY NAV
+       ======================================================== -->
+  <nav class="ep-nav" id="epNav">
+    <div class="ep-nav-inner">
+      <div class="ep-nav-left">
+        <img src="assets/logo-white.png" alt="TRXL" class="ep-nav-logo" id="epNavLogo">
+        <div class="ep-nav-ep">
+          Episode <strong id="epNavNum"></strong>
+          <span style="margin:0 8px;opacity:.4">·</span>
+          <span id="epNavDate"></span>
+        </div>
+      </div>
+      <div class="ep-nav-right">
+        <a href="#listen" class="ep-btn ep-btn-ghost" style="padding:8px 14px;font-size:12px">Listen</a>
+      </div>
+    </div>
+    <div class="ep-nav-progress" id="epNavProgress"></div>
+  </nav>
+
+  <!-- ========================================================
+       HERO
+       ======================================================== -->
+  <header class="ep-hero">
+    <div class="ep-hero-sky"></div>
+    <div class="ep235-wall" id="ep235Wall">
+      <div class="ep235-bloom"></div>
+      <div class="ep235-grid" id="ep235Grid"></div>
+    </div>
+    <div class="ep-container ep-hero-inner">
+      <div class="ep-eyebrow reveal">
+        <span class="dot"></span>
+        TRXL Podcast
+        <span class="dot dot-sm"></span>
+        <span class="num" id="heroEpNum"></span>
+        <span class="dot dot-sm"></span>
+        <span id="heroDate"></span>
+      </div>
+      <h1 class="reveal delay-1" id="heroTitle"></h1>
+      <p class="ep-hero-subtitle reveal delay-2" id="heroSubtitle"></p>
+      <div class="ep-guest reveal delay-3">
+        <div class="ep-guest-avatars" id="heroAvatar"></div>
+        <div class="ep-guest-text">
+          <div class="ep-guest-name" id="heroGuestName"></div>
+          <div class="ep-guest-role" id="heroGuestRole"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================
+       CENTRAL ARGUMENT
+       ======================================================== -->
+  <section class="ep-section ep-argument">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>The central argument</span> <span class="idx">01 / 07</span></div>
+      <div class="reveal delay-1">
+        <p id="argumentText"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       PULL QUOTE
+       ======================================================== -->
+  <section class="ep-quote">
+    <div class="ep-container">
+      <blockquote class="reveal" id="quoteText"></blockquote>
+      <span class="ep-attr reveal delay-1" id="quoteAttr"></span>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       STATS
+       ======================================================== -->
+  <section class="ep-section">
+    <div class="ep-container-wide">
+      <div class="ep-kicker reveal"><span>By the numbers</span> <span class="idx">02 / 07</span></div>
+      <div class="ep-stats-grid reveal delay-1" id="statsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       QUESTION
+       ======================================================== -->
+  <section class="ep-question">
+    <div class="ep-container">
+      <div class="reveal">
+        <div class="mark">?</div>
+        <p id="questionText"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       ANALYSIS
+       ======================================================== -->
+  <section class="ep-section">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>Episode analysis</span> <span class="idx">03 / 07</span></div>
+      <div class="ep-analysis" id="analysisList"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TAKEAWAYS
+       ======================================================== -->
+  <section class="ep-section ep-takeaways">
+    <div class="ep-container-wide">
+      <div class="ep-kicker reveal"><span>Practical takeaways</span> <span class="idx">04 / 07</span></div>
+      <div class="ep-takeaways-grid reveal delay-1" id="takeawaysGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       INSIGHTS
+       ======================================================== -->
+  <section class="ep-section ep-insights-section" id="insightsSection">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>Key insights</span> <span class="idx">05 / 07</span></div>
+
+      <!-- Plain list: the no-JS fallback and the PDF/print version -->
+      <div class="ep-insights" id="insightsList"></div>
+
+      <!-- Swipeable card stack: screen only, built by JS -->
+      <div class="ep-stack-wrap">
+        <div class="ep-stack" id="epStack" role="group" aria-roledescription="carousel" aria-label="Key insights"></div>
+        <div class="ep-stack-controls">
+          <button class="ep-stack-btn" id="stackPrev" aria-label="Previous insight">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </button>
+          <div class="ep-stack-dots" id="stackDots"></div>
+          <button class="ep-stack-btn" id="stackNext" aria-label="Next insight">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <div class="ep-stack-hint">Drag a card · or use ← →</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       BOTTOM LINE
+       ======================================================== -->
+  <section class="ep-section ep-bottomline">
+    <div class="ep-container">
+      <div class="ep-kicker reveal"><span>The bottom line</span> <span class="idx">06 / 07</span></div>
+      <div class="ep-bottomline-grid">
+        <div class="ep-bottomline-portrait reveal" id="bottomPortraitBlock">
+          <div id="bottomPortraitFrames"></div>
+          <div class="ep-portrait-caption">
+            <div class="ep-portrait-name" id="bottomPortraitName"></div>
+            <div class="ep-portrait-role" id="bottomPortraitRole"></div>
+          </div>
+        </div>
+        <div class="ep-bottomline-text">
+          <p class="reveal delay-1" id="bottomLineText"></p>
+          <div class="closing reveal delay-2" id="closingQuoteText"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CTA
+       ======================================================== -->
+  <section class="ep-cta" id="listen">
+    <div class="ep-container">
+      <div class="ep-kicker reveal" style="justify-content:center"><span>Full episode</span> <span class="idx">07 / 07</span></div>
+      <h2 class="reveal delay-1">Hear the whole conversation with <span id="ctaGuestName"></span></h2>
+      <div class="ep-cta-buttons reveal delay-2">
+        <a id="ctaListen" class="ep-btn ep-btn-primary" href="#" target="_blank" rel="noopener">
+          Listen to episode
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a id="ctaNewsletter" class="ep-btn ep-btn-ghost" href="#" target="_blank" rel="noopener">
+          Read the newsletter
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="ep-footer">
+    <div class="ep-footer-brand">
+      <img class="ep-footer-mark" src="assets/favicon.png" alt="TRXL" />
+      <span>TRXL Podcast</span>
+      <span class="dot">·</span>
+      <span>Architecture × Technology</span>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       TWEAKS PANEL
+       ======================================================== -->
+  <div class="tweaks-panel" id="tweaksPanel" aria-hidden="true">
+    <div class="tweaks-title">Tweaks</div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Theme</span>
+      <div class="tweaks-opts" data-control="theme">
+        <button class="tweaks-chip" data-value="dark">Dark</button>
+        <button class="tweaks-chip" data-value="light">Light</button>
+      </div>
+    </div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Accent</span>
+      <div class="tweaks-opts" data-control="accent">
+        <button class="tweaks-swatch" data-value="coral" title="Coral"></button>
+        <button class="tweaks-swatch" data-value="plum" title="Plum"></button>
+        <button class="tweaks-swatch" data-value="indigo" title="Indigo"></button>
+      </div>
+    </div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Motion</span>
+      <div class="tweaks-opts" data-control="motion">
+        <button class="tweaks-chip" data-value="on">On</button>
+        <button class="tweaks-chip" data-value="off">Off</button>
+      </div>
+    </div>
+    <div class="tweaks-row">
+      <span class="tweaks-label">Density</span>
+      <div class="tweaks-opts" data-control="density">
+        <button class="tweaks-chip" data-value="spacious">Spacious</button>
+        <button class="tweaks-chip" data-value="compact">Compact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       CONTENT + LOGIC
+       ======================================================== -->
+  <!-- UPDATE THIS to point at the new episode content file -->
+  <script src="content/episode-235.js"></script>
+  <script>
+    /* ----- Tweakable defaults (rewritable by host) ----- */
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "theme": "dark",
+      "accent": "coral",
+      "motion": "on",
+      "density": "spacious"
+    }/*EDITMODE-END*/;
+
+    const state = { ...TWEAK_DEFAULTS };
+
+    /* ----- Render content ----- */
+    const ep = window.TRXL_EPISODE;
+    function render() {
+      // Nav
+      document.getElementById('epNavNum').textContent = ep.number;
+      document.getElementById('epNavDate').textContent = ep.date;
+
+      // Hero
+      document.getElementById('heroEpNum').textContent = 'Ep ' + ep.number;
+      document.getElementById('heroDate').textContent = ep.date;
+      // Smart title: wrap last word in <em> for gradient highlight
+      const title = ep.title;
+      const parts = title.split(' ');
+      if (parts.length > 2) {
+        const emWord = parts[parts.length - 2];
+        parts[parts.length - 2] = `<em>${emWord}</em>`;
+        document.getElementById('heroTitle').innerHTML = parts.join(' ');
+      } else {
+        document.getElementById('heroTitle').textContent = title;
+      }
+      document.getElementById('heroSubtitle').textContent = ep.subtitle;
+
+      // Guests — `guests: [...]` for multi-guest episodes, `guest: {}` for one
+      const guests = ep.guests || [ep.guest];
+      const names = guests.map(g => g.name);
+      const nameList = names.length > 1
+        ? names.slice(0, -1).join(', ') + ' & ' + names[names.length - 1]
+        : names[0];
+      // `guestLine` overrides the computed roles — multi-guest joins read badly
+      const roleList = ep.guestLine
+        || guests.map(g => `${g.role}, ${g.firm}`).join(' · ');
+
+      document.getElementById('heroAvatar').innerHTML = guests.map(g => {
+        const initials = g.name.split(' ').map(w => w[0]).slice(0,2).join('');
+        return g.portrait
+          ? `<div class="ep-guest-avatar"><img src="${g.portrait}" alt="${g.name}"></div>`
+          : `<div class="ep-guest-avatar">${initials}</div>`;
+      }).join('');
+      document.getElementById('heroGuestName').textContent = nameList;
+      document.getElementById('heroGuestRole').textContent = roleList;
+
+      // Central argument
+      document.getElementById('argumentText').textContent = ep.centralArgument;
+
+      // Quote
+      document.getElementById('quoteText').textContent = `"${ep.pullQuote.text}"`;
+      document.getElementById('quoteAttr').textContent = '— ' + ep.pullQuote.attribution;
+
+      // Stats
+      const statsGrid = document.getElementById('statsGrid');
+      statsGrid.innerHTML = ep.stats.map((s, i) => `
+        <div class="ep-stat">
+          <span class="ep-stat-index">0${i+1}</span>
+          <span class="ep-stat-num" data-value="${s.value}">${s.value}</span>
+          <div class="ep-stat-label">${s.label}</div>
+        </div>
+      `).join('');
+
+      // Question
+      document.getElementById('questionText').textContent = ep.question;
+
+      // Analysis
+      document.getElementById('analysisList').innerHTML = ep.analysis.map((a, i) => `
+        <div class="ep-analysis-card">
+          <div class="ep-analysis-idx">0${i+1}</div>
+          <div>
+            <h3>${a.title}</h3>
+            <p>${a.body}</p>
+          </div>
+        </div>
+      `).join('');
+
+      // Takeaways
+      document.getElementById('takeawaysGrid').innerHTML = ep.takeaways.map((t, i) => `
+        <div class="ep-takeaway">
+          <span class="ep-takeaway-num">Step 0${i+1}</span>
+          <p>${t}</p>
+        </div>
+      `).join('');
+
+      // Insights
+      document.getElementById('insightsList').innerHTML = ep.insights.map((ins, i) => `
+        <div class="ep-insight reveal">
+          <div class="ep-insight-num">0${i+1}</div>
+          <div class="ep-insight-body">
+            <h4>${ins.title}</h4>
+            <p>${ins.body}</p>
+          </div>
+          <div class="ep-insight-mark"></div>
+        </div>
+      `).join('');
+
+      // Bottom line
+      document.getElementById('bottomLineText').textContent = ep.bottomLine;
+      document.getElementById('closingQuoteText').textContent = '"' + ep.closingQuote + '"';
+
+      // Bottom portrait
+      const withPortraits = guests.filter(g => g.portrait);
+      const frames = document.getElementById('bottomPortraitFrames');
+      if (withPortraits.length) {
+        frames.className = withPortraits.length > 1 ? 'ep-portrait-duo' : '';
+        frames.innerHTML = withPortraits.map(g => `
+          <div class="ep-portrait-frame"><img src="${g.portrait}" alt="${g.name}"></div>
+        `).join('');
+      } else {
+        document.getElementById('bottomPortraitBlock').style.display = 'none';
+      }
+      document.getElementById('bottomPortraitName').textContent = nameList;
+      document.getElementById('bottomPortraitRole').textContent = roleList;
+
+      // CTA
+      document.getElementById('ctaGuestName').textContent = nameList;
+      document.getElementById('ctaListen').href = ep.links.listen;
+      document.getElementById('ctaNewsletter').href = ep.links.newsletter;
+
+      // Page title
+      document.title = `TRXL ${ep.number} — ${ep.title}`;
+
+      // Logo should swap with theme
+      updateLogo();
+    }
+    function updateLogo() {
+      const logo = document.getElementById('epNavLogo');
+      logo.src = state.theme === 'light' ? 'assets/logo-black.png' : 'assets/logo-white.png';
+    }
+
+    /* ----- Hero: the note-card wall (ep 235) -----
+       Deterministic jitter/selection so the hero renders identically every
+       load — the og.png screenshot has to be reproducible. */
+    function buildWall() {
+      const grid = document.getElementById('ep235Grid');
+      if (!grid) return;
+      const COLS = 9, ROWS = 6;
+      // Stable hash in [0,1) — same card gets the same tilt and state every time
+      const rnd = (n) => { const v = Math.sin(n * 12.9898) * 43758.5453; return v - Math.floor(v); };
+      let html = '';
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const i = r * COLS + c;
+          const rot = (rnd(i + 1) * 5 - 2.5).toFixed(2);
+          const x = (rnd(i + 90) * 8 - 4).toFixed(1);
+          const y = (rnd(i + 180) * 8 - 4).toFixed(1);
+          // ~1/3 of the wall: the friction points that already had an answer
+          const solved = rnd(i + 300) < 0.34;
+          html += `<div class="ep235-card${solved ? ' is-solved' : ''}" style="`
+                + `--i:${c + r};--rot:${rot}deg;--x:${x}px;--y:${y}px"></div>`;
+        }
+      }
+      grid.innerHTML = html;
+    }
+
+    /* ----- Reveal on scroll -----
+       Fallback to a plain scroll listener: IntersectionObserver has been
+       unreliable inside our preview iframe (never fires even with the
+       target clearly on-screen). This always runs in the same frame the
+       user can see the element. */
+    function setupReveal() {
+      const items = Array.from(document.querySelectorAll('.reveal'));
+      if (state.motion === 'off') {
+        document.documentElement.classList.remove('js-motion');
+        items.forEach(el => el.classList.add('is-in'));
+        return;
+      }
+      document.documentElement.classList.add('js-motion');
+      const check = () => {
+        const vh = window.innerHeight;
+        for (const el of items) {
+          if (el.classList.contains('is-in')) continue;
+          const r = el.getBoundingClientRect();
+          if (r.top < vh - 80 && r.bottom > 0) el.classList.add('is-in');
+        }
+      };
+      check();
+      window.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('resize', check);
+    }
+
+    /* ----- Stat counter animation ----- */
+    function animateStats() {
+      const nums = document.querySelectorAll('.ep-stat-num');
+      nums.forEach(el => {
+        const final = el.dataset.value;
+        // Extract numeric part
+        const match = final.match(/([\d.]+)/);
+        if (!match || state.motion === 'off') { el.textContent = final; return; }
+        const target = parseFloat(match[1]);
+        const prefix = final.substring(0, match.index);
+        const suffix = final.substring(match.index + match[1].length);
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            io.unobserve(el);
+            const dur = 1400;
+            const start = performance.now();
+            const hasDecimal = match[1].includes('.');
+            function frame(now) {
+              const t = Math.min(1, (now - start) / dur);
+              const eased = 1 - Math.pow(1 - t, 3);
+              const v = target * eased;
+              el.textContent = prefix + (hasDecimal ? v.toFixed(1) : Math.round(v)) + suffix;
+              if (t < 1) requestAnimationFrame(frame); else el.textContent = final;
+            }
+            requestAnimationFrame(frame);
+          });
+        }, { threshold: 0.4 });
+        io.observe(el);
+      });
+    }
+
+    /* ----- Nav scroll progress ----- */
+    function setupNavScroll() {
+      const nav = document.getElementById('epNav');
+      const progress = document.getElementById('epNavProgress');
+      function onScroll() {
+        const y = window.scrollY;
+        nav.classList.toggle('is-scrolled', y > 10);
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const p = h > 0 ? Math.min(1, y / h) : 0;
+        progress.style.setProperty('--scroll-progress', p);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    /* ----- Tweaks controls ----- */
+    function applyState() {
+      document.documentElement.dataset.theme = state.theme;
+      document.documentElement.dataset.accent = state.accent;
+      document.documentElement.dataset.density = state.density;
+      document.documentElement.dataset.motion = state.motion;
+      // Update chip active states
+      document.querySelectorAll('.tweaks-opts').forEach(group => {
+        const key = group.dataset.control;
+        group.querySelectorAll('[data-value]').forEach(b => {
+          b.classList.toggle('is-active', b.dataset.value === state[key]);
+        });
+      });
+      updateLogo();
+    }
+    function setupTweaks() {
+      document.querySelectorAll('.tweaks-opts').forEach(group => {
+        const key = group.dataset.control;
+        group.querySelectorAll('[data-value]').forEach(b => {
+          b.addEventListener('click', () => {
+            state[key] = b.dataset.value;
+            applyState();
+            window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: state[key] } }, '*');
+          });
+        });
+      });
+
+      // Edit-mode protocol
+      window.addEventListener('message', (e) => {
+        if (!e.data || !e.data.type) return;
+        if (e.data.type === '__activate_edit_mode') {
+          document.getElementById('tweaksPanel').classList.add('is-open');
+        } else if (e.data.type === '__deactivate_edit_mode') {
+          document.getElementById('tweaksPanel').classList.remove('is-open');
+        }
+      });
+      window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+    }
+
+    /* ----- Key insights as a swipeable card stack -----
+       Screen only. If this never runs, the plain list stays visible. */
+    function setupInsightStack() {
+      const items = ep.insights;
+      const stage = document.getElementById('epStack');
+      const dotsEl = document.getElementById('stackDots');
+      const N = items.length;
+
+      // order[0] is the top card. Advancing rotates the array.
+      let order = items.map((_, i) => i);
+
+      stage.innerHTML = items.map((ins, i) => `
+        <article class="ep-card" data-i="${i}" aria-label="Insight ${i + 1} of ${N}">
+          <div class="ep-card-head">
+            <span class="ep-card-num">0${i + 1}</span>
+            <span class="ep-card-of">Key insight</span>
+          </div>
+          <div>
+            <h4>${ins.title}</h4>
+            <p>${ins.body}</p>
+          </div>
+          <div class="ep-card-rule"></div>
+        </article>
+      `).join('');
+
+      dotsEl.innerHTML = items.map((ins, i) =>
+        `<button class="ep-stack-dot" data-i="${i}" aria-label="Go to insight ${i + 1}: ${ins.title}"></button>`
+      ).join('');
+
+      const cards = [...stage.querySelectorAll('.ep-card')];
+      const dots  = [...dotsEl.querySelectorAll('.ep-stack-dot')];
+
+      function layout() {
+        order.forEach((cardIdx, pos) => {
+          const card = cards[cardIdx];
+          card.dataset.pos = pos;
+          card.style.zIndex = N - pos;
+          card.style.opacity = pos > 3 ? 0 : 1 - pos * 0.16;
+          card.style.transform = `translate3d(0, ${pos * 30}px, 0) scale(${1 - pos * 0.05})`;
+          card.setAttribute('aria-hidden', pos === 0 ? 'false' : 'true');
+        });
+        dots.forEach((d, i) => d.classList.toggle('is-active', i === order[0]));
+      }
+
+      // Fly the top card out, then send it to the back (dir: 1 right, -1 left)
+      function advance(dir) {
+        const card = cards[order[0]];
+        card.style.transition = 'transform 340ms var(--ep-ease), opacity 340ms linear';
+        card.style.transform = `translate3d(${dir * 620}px, -40px, 0) rotate(${dir * 18}deg)`;
+        card.style.opacity = 0;
+        order = [...order.slice(1), order[0]];
+        setTimeout(() => { card.style.transition = ''; layout(); }, 320);
+        layout();
+      }
+
+      // Pull the last card back to the front from the side it left
+      function retreat() {
+        const last = order[N - 1];
+        order = [last, ...order.slice(0, N - 1)];
+        const card = cards[last];
+        card.style.transition = 'none';
+        card.style.transform = 'translate3d(-620px, -40px, 0) rotate(-18deg)';
+        card.style.opacity = 0;
+        requestAnimationFrame(() => { card.style.transition = ''; layout(); });
+      }
+
+      function goTo(target) {
+        let guard = 0;
+        while (order[0] !== target && guard++ < N) advance(1);
+      }
+
+      let drag = null;
+      stage.addEventListener('pointerdown', (e) => {
+        const card = e.target.closest('.ep-card');
+        if (!card || card.dataset.pos !== '0') return;
+        drag = { id: e.pointerId, x0: e.clientX, y0: e.clientY, card, dx: 0 };
+        card.classList.add('is-dragging');
+        card.setPointerCapture(e.pointerId);
+      });
+
+      stage.addEventListener('pointermove', (e) => {
+        if (!drag || e.pointerId !== drag.id) return;
+        drag.dx = e.clientX - drag.x0;
+        const dy = (e.clientY - drag.y0) * 0.25;
+        drag.card.style.transform =
+          `translate3d(${drag.dx}px, ${dy}px, 0) rotate(${drag.dx * 0.045}deg)`;
+        drag.card.style.setProperty('--tint', Math.min(Math.abs(drag.dx) / 140, 1));
+        drag.card.style.setProperty('--tint-x', drag.dx > 0 ? '85%' : '15%');
+      });
+
+      function endDrag(e) {
+        if (!drag || (e && e.pointerId !== drag.id)) return;
+        const { card, dx } = drag;
+        card.classList.remove('is-dragging');
+        card.style.removeProperty('--tint');
+        drag = null;
+        if (Math.abs(dx) > 110) advance(Math.sign(dx));
+        else layout();                       // snap back
+      }
+      stage.addEventListener('pointerup', endDrag);
+      stage.addEventListener('pointercancel', endDrag);
+
+      document.getElementById('stackNext').addEventListener('click', () => advance(1));
+      document.getElementById('stackPrev').addEventListener('click', retreat);
+      dots.forEach((d) => d.addEventListener('click', () => goTo(+d.dataset.i)));
+
+      stage.tabIndex = 0;
+      stage.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { advance(1); e.preventDefault(); }
+        if (e.key === 'ArrowLeft')  { retreat();  e.preventDefault(); }
+      });
+
+      layout();
+      document.getElementById('insightsSection').classList.add('has-stack');
+    }
+
+    /* ----- Go ----- */
+    render();
+    applyState();
+    buildWall();
+    setupReveal();
+    animateStats();
+    setupNavScroll();
+    setupTweaks();
+    setupInsightStack();
+  </script>
+</body>
+</html>
