@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Build Your Firm's AI Adoption Plan — AU 2026 Session AS1719</title>
-<meta name="description" content="Worksheets 2 and 3 for AU 2026 session AS1719: the Knowledge Flow Audit and your 30-day AI adoption plan. Your answers stay on your device.">
+<meta name="description" content="Worksheets 2 and 3 for AU 2026 session AS1719: the Knowledge Flow Audit and your path to a 30-day AI adoption plan. Your answers stay on your device.">
 <meta property="og:title" content="Build Your Firm's AI Adoption Plan — AU 2026">
 <meta property="og:description" content="Knowledge Flow Audit + 30-day plan. Session AS1719 with Evan Troxel and Kenton Grant.">
 <meta property="og:url" content="https://assets.trxl.co/au1719/">
@@ -20,7 +20,7 @@
   --fog:#D6D6DB; --mist:#EDEDF0; --paper:#F7F6F3; --white:#FFFFFF; --divider:#E4E3DF;
   --bg:var(--paper); --fg:var(--ink); --fg-muted:var(--graphite); --fg-subtle:var(--slate);
   --border:var(--fog); --accent:var(--trxl-plum); --accent-fg:var(--white);
-  --danger:#B83838; --success:#2E7D5B;
+  --danger:#B83838; --danger-bg:#FBEAEA; --success:#2E7D5B;
   --font-display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
   --font-sans:'Inter','Helvetica Neue',Arial,sans-serif;
   --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
@@ -94,12 +94,27 @@ section{margin:0 0 var(--s-7); scroll-margin-top:72px}
 .note strong{color:var(--fg)}
 .note p{margin:0 0 var(--s-2)} .note p:last-child{margin:0}
 
+/* Sub-sections within a step (Exercise 2's three-part structure) */
+.subhead{
+  display:flex; align-items:baseline; gap:var(--s-3); margin:var(--s-6) 0 var(--s-4);
+  padding-top:var(--s-5); border-top:2px solid var(--ink);
+}
+.subhead:first-of-type{padding-top:0; border-top:0; margin-top:var(--s-5)}
+.subhead .letter{
+  font-family:var(--font-mono); font-size:13px; font-weight:600; color:#fff;
+  background:var(--accent); border-radius:var(--r-2); padding:2px 8px; flex:none;
+}
+.subhead h3{
+  font-family:var(--font-display); font-weight:600; font-size:1.2rem; margin:0;
+}
+
 /* --- Fields -------------------------------------------------------------- */
 .q{margin:0 0 var(--s-5)}
 .q > label,.q-label{
   display:block; font-weight:600; font-size:15px; margin-bottom:var(--s-2); line-height:1.35;
 }
 .q-hint{display:block; font-weight:400; font-size:13px; color:var(--fg-subtle); margin-top:2px}
+.q-req::after{content:' *'; color:var(--accent); font-weight:700}
 input[type=text],input[type=date],input[type=number],textarea{
   width:100%; font-family:var(--font-sans); font-size:16px; color:var(--fg);
   background:var(--white); border:1px solid var(--border); border-radius:var(--r-2);
@@ -121,6 +136,16 @@ input[type=number]{width:88px}
 .chip[aria-pressed=true]{background:var(--ink); border-color:var(--ink); color:var(--white)}
 .chips-scale .chip{min-width:44px; text-align:center; font-family:var(--font-mono)}
 
+/* Required-field flag */
+[data-req].is-invalid{
+  border-radius:var(--r-3); outline:1.5px solid var(--danger); background:var(--danger-bg);
+  padding:var(--s-3); margin:calc(-1 * var(--s-3)) calc(-1 * var(--s-3)) var(--s-2);
+}
+.req-warn{
+  display:none; font-size:12.5px; font-weight:600; color:var(--danger); margin-top:var(--s-2);
+}
+[data-req].is-invalid + .req-warn,[data-req].is-invalid .req-warn{display:block}
+
 /* Pillar picker */
 .pillars{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:var(--s-3)}
 .pillar{
@@ -132,6 +157,18 @@ input[type=number]{width:88px}
 .pillar:hover{border-color:var(--stone)}
 .pillar[aria-pressed=true]{border-color:var(--accent); background:var(--accent); color:#fff}
 .pillar[aria-pressed=true] span{color:rgba(255,255,255,.82)}
+
+/* Link picker (worst-link / gut-check) — chip row with a two-line label */
+.links{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:var(--s-2)}
+.link-chip{
+  font-family:var(--font-sans); font-size:14px; font-weight:600; text-align:left;
+  padding:var(--s-3); border:1.5px solid var(--border); border-radius:var(--r-3);
+  background:var(--white); color:var(--fg); cursor:pointer; transition:all 140ms ease;
+}
+.link-chip span{display:block; font-family:var(--font-sans); font-size:12px; font-weight:400; color:var(--fg-subtle); margin-top:2px}
+.link-chip:hover{border-color:var(--stone)}
+.link-chip[aria-pressed=true]{border-color:var(--accent); background:var(--accent); color:#fff}
+.link-chip[aria-pressed=true] span{color:rgba(255,255,255,.82)}
 
 /* Subtotal bars */
 .subtotals{display:flex; gap:var(--s-4); flex-wrap:wrap; align-items:flex-end}
@@ -171,7 +208,16 @@ input[type=number]{width:88px}
   border:1px solid var(--accent); border-radius:var(--r-pill); padding:1px 7px; margin-left:8px; vertical-align:2px;
 }
 
-/* Weeks */
+/* Comparison callout (gut-check vs final worst link) */
+.compare{
+  background:var(--white); border:1.5px solid var(--accent); border-radius:var(--r-3);
+  padding:var(--s-4); margin:var(--s-5) 0; font-size:15px;
+}
+.compare[hidden]{display:none}
+.compare strong{color:var(--accent)}
+.compare .reassure{font-size:13.5px; color:var(--fg-subtle); margin-top:var(--s-2)}
+
+/* Weeks / stem / owner rows */
 .weeks{display:grid; gap:var(--s-2)}
 .week{display:grid; grid-template-columns:74px 1fr; gap:var(--s-3); align-items:center}
 .week-n{font-family:var(--font-mono); font-size:12.5px; color:var(--fg-subtle); font-weight:500}
@@ -185,6 +231,24 @@ input[type=number]{width:88px}
 }
 .carry[hidden]{display:none}
 
+/* Prompt generator */
+.prompt-wrap{
+  background:var(--ink); border-radius:var(--r-3); padding:var(--s-4); margin:var(--s-5) 0;
+}
+.prompt-wrap h3{
+  font-family:var(--font-display); color:#fff; font-size:1.1rem; margin:0 0 var(--s-2);
+}
+.prompt-wrap p{color:rgba(255,255,255,.7); font-size:13.5px; margin:0 0 var(--s-3)}
+#promptText{
+  width:100%; min-height:220px; background:#161618; color:#F2F1ED;
+  border:1px solid #2E2E33; border-radius:var(--r-2); padding:var(--s-3);
+  font-family:var(--font-mono); font-size:12.5px; line-height:1.55; resize:vertical;
+}
+.prompt-actions{display:flex; gap:var(--s-2); flex-wrap:wrap; margin-top:var(--s-3)}
+.prompt-actions .btn{background:#fff; color:var(--ink); border-color:#fff; font-size:13px}
+.prompt-actions .btn:hover{opacity:.85}
+.prompt-actions .btn-open{background:transparent; color:#fff; border-color:#4A4A52}
+
 /* Footer actions */
 .done{
   border-top:2px solid var(--ink); padding-top:var(--s-5); margin-top:var(--s-7);
@@ -195,9 +259,10 @@ input[type=number]{width:88px}
 .actions .btn{font-size:15px; padding:12px 22px}
 .credit{font-size:13px; color:var(--fg-subtle); margin-top:var(--s-6); border-top:1px solid var(--divider); padding-top:var(--s-4)}
 .credit a{color:var(--accent)}
+.credit .row{margin-bottom:4px}
 
 /* --- Steps ---------------------------------------------------------------
-   Screen: show one worksheet at a time. Print: show all three, so a blank
+   Screen: show one worksheet at a time. Print: show all steps, so a blank
    print-out is still the full AU handout. */
 .steps{
   display:flex; gap:var(--s-2); margin:0 0 var(--s-6); flex-wrap:wrap;
@@ -229,12 +294,11 @@ input[type=number]{width:88px}
 .stepnav .spacer{flex:1}
 
 /* --- Print ---------------------------------------------------------------
-   Doubles as the AU handout PDF: printing with every field blank produces a
-   usable paper worksheet. */
+   Attendee take-home. Kenton owns the official AU handout PDF separately. */
 @media print{
   @page{margin:14mm 12mm}
   [data-step]{display:block !important}
-  .steps,.stepnav{display:none !important}
+  .steps,.stepnav,.prompt-wrap{display:none !important}
   :root{--bg:#fff}
   body{background:#fff; font-size:10.5pt; line-height:1.4}
   .noprint{display:none !important}
@@ -243,7 +307,7 @@ input[type=number]{width:88px}
   .hero h1{font-size:20pt}
   section{margin-bottom:16pt; break-inside:avoid}
   .sec-head h2{font-size:14pt}
-  h2,h3,.sec-head{break-after:avoid}
+  h2,h3,.sec-head,.subhead{break-after:avoid}
   .note{background:#fff; border-left:2pt solid #000; padding:6pt 8pt; font-size:9pt}
   .q{margin-bottom:9pt; break-inside:avoid}
   .trace .q{padding:6pt 8pt; margin-bottom:6pt; break-inside:avoid}
@@ -254,13 +318,14 @@ input[type=number]{width:88px}
   textarea{border:.75pt solid #999; padding:4pt; min-height:0}
   .chip{padding:2pt 7pt; font-size:8.5pt; border-color:#999}
   .chip[aria-pressed=true]{background:#000 !important; color:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
-  .pillar{padding:6pt 8pt; font-size:11pt}
-  .pillar[aria-pressed=true]{background:#000 !important; color:#fff !important; border-color:#000; -webkit-print-color-adjust:exact; print-color-adjust:exact}
-  .pillar[aria-pressed=true] span{color:#ddd}
+  .pillar,.link-chip{padding:6pt 8pt; font-size:11pt}
+  .pillar[aria-pressed=true],.link-chip[aria-pressed=true]{background:#000 !important; color:#fff !important; border-color:#000; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .pillar[aria-pressed=true] span,.link-chip[aria-pressed=true] span{color:#ddd}
   .bar-fill{background:#000 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
   .bar-track{background:#e6e6e6}
   .diag-row{padding:5pt 0; break-inside:avoid}
   .diag-row.is-key{background:#fff; margin:0; padding-left:0; padding-right:0}
+  .compare{border-color:#000}
   .done{break-inside:avoid}
   a[href]::after{content:''}
 }
@@ -281,28 +346,37 @@ input[type=number]{width:88px}
   <div class="hero">
     <p class="eyebrow">Autodesk University 2026 · Hands-on Workshop</p>
     <h1>Build Your Firm's AI&nbsp;Adoption Plan</h1>
-    <p>Worksheets 2 and 3. Everything you type stays on this device &mdash; nothing is sent anywhere.
-    When you're done, save it as a PDF or copy it to yourself.</p>
+    <p>Exercises 2 and 3. Everything you type stays on this device &mdash; nothing is sent anywhere.
+    This isn't right-or-wrong scoring &mdash; it's a snapshot for the record. When you're done,
+    save it as a PDF or copy it to yourself.</p>
   </div>
 
   <nav class="steps noprint" id="steps">
     <button class="step-btn" type="button" data-goto="1"><span class="n">1</span> Where you are</button>
     <button class="step-btn" type="button" data-goto="2"><span class="n">2</span> Knowledge Flow Audit</button>
     <button class="step-btn" type="button" data-goto="3"><span class="n">3</span> 30-Day Plan</button>
+    <button class="step-btn" type="button" data-goto="4"><span class="n">4</span> Before You Go</button>
   </nav>
 
-  <!-- ===== WS1 carry-forward ============================================ -->
+  <!-- ===== Step 1 — WS1 carry-forward ==================================== -->
   <section id="ws1" data-step="1" class="is-active">
     <div class="sec-head"><span class="sec-num">1</span><h2>Where you're starting from</h2></div>
     <p class="sec-sub">You just scored nine dimensions on the form. Bring the answer over here.</p>
 
+    <div class="note">
+      <p><strong>This is a snapshot, not a test.</strong> Don't worry about how the slider bar or
+      the numbers look &mdash; there's no right or wrong score. You're just documenting where you
+      are right now.</p>
+    </div>
+
     <div class="q">
-      <span class="q-label">Which pillar came out lowest?</span>
-      <div class="pillars chips" data-k="pillar">
+      <span class="q-label q-req">Which pillar came out lowest?</span>
+      <div class="pillars chips" data-k="pillar" data-req>
         <button class="pillar chip" type="button" data-v="Capability">Capability<span>Tools · Data · AI literacy</span></button>
         <button class="pillar chip" type="button" data-v="Alignment">Alignment<span>Leadership · Culture · Governance</span></button>
         <button class="pillar chip" type="button" data-v="Accountability">Accountability<span>Metrics · Feedback loops · Impact</span></button>
       </div>
+      <p class="req-warn">Pick one to continue &mdash; the rest of this depends on it.</p>
     </div>
 
     <div class="q">
@@ -328,19 +402,37 @@ input[type=number]{width:88px}
     </div>
   </section>
 
-  <!-- ===== WS2 ========================================================== -->
+  <!-- ===== Step 2 — WS2 ==================================================== -->
   <section id="ws2" data-step="2">
-    <div class="sec-head"><span class="sec-num">2</span><h2>Where you're losing time</h2></div>
+    <div class="sec-head"><span class="sec-num">2</span><h2>Where you're losing ___</h2></div>
     <p class="sec-sub">The Knowledge Flow Audit. Don't answer in general &mdash; trace one real thing.</p>
 
-    <div class="note">
-      <p>Somebody at your firm has already run the experiment: fed a spec section and a few drawings
-      into a chatbot, got back something fluent and mostly right. Then ran it across ten more and the
-      results scattered &mdash; strong on one, wrong on the next, differently wrong on the third.</p>
-      <p><strong>The failure wasn't the model. It was that there was no structure underneath it.</strong>
-      AI can only retrieve what you captured, and it will confidently reuse what you don't trust.
-      This worksheet is where you find out whether you have anything to retrieve.</p>
+    <div class="q">
+      <span class="q-label q-req">Where are you losing the most right now?</span>
+      <div class="chips" data-k="losing" data-req>
+        <button class="chip" type="button" data-v="Time">Time</button>
+        <button class="chip" type="button" data-v="Knowledge">Knowledge</button>
+        <button class="chip" type="button" data-v="Urgency">Urgency</button>
+        <button class="chip" type="button" data-v="Ability to be strategic">Ability to be strategic</button>
+        <button class="chip" type="button" data-v="Money">Money</button>
+      </div>
+      <p class="req-warn">Pick one &mdash; whatever's true right now.</p>
     </div>
+
+    <div class="q">
+      <span class="q-label q-req">Before you do anything else &mdash; gut check. What do you think your worst link is?</span>
+      <span class="q-hint" style="display:block; margin-bottom:10px">No thinking, just pick. You'll revisit this after the audit.</span>
+      <div class="links" data-k="gut" data-req>
+        <button class="link-chip" type="button" data-v="Capture">Capture<span>Was it ever written down?</span></button>
+        <button class="link-chip" type="button" data-v="Findability">Findability<span>Could someone else find it?</span></button>
+        <button class="link-chip" type="button" data-v="Trust">Trust<span>Do people act on it?</span></button>
+        <button class="link-chip" type="button" data-v="Reuse">Reuse<span>Does it change the next project?</span></button>
+        <button class="link-chip" type="button" data-v="Ownership">Ownership<span>Could you take it and leave?</span></button>
+      </div>
+      <p class="req-warn">Pick one &mdash; it's just a gut check, there's no wrong answer.</p>
+    </div>
+
+    <div class="subhead"><span class="letter">A</span><h3>Trace the scenario</h3></div>
 
     <div class="q">
       <label for="q0">Pick one real question someone on your team had to answer in the last month.
@@ -401,7 +493,7 @@ input[type=number]{width:88px}
       </div>
     </div>
 
-    <h3 style="font-family:var(--font-display); font-size:1.15rem; margin:var(--s-6) 0 var(--s-2)">Now score that chain</h3>
+    <div class="subhead"><span class="letter">B</span><h3>Score the chain</h3></div>
     <p class="sec-sub">1 is the floor, 5 is the ceiling. Score what's true, not what's on the website.</p>
 
     <div class="diag">
@@ -440,15 +532,32 @@ input[type=number]{width:88px}
       in software contracts nobody re-read. It applies to every vendor in this room.</p>
     </div>
 
-    <div class="q" style="margin-top:var(--s-6)">
-      <span class="q-label">The single worst link in that chain is&hellip;</span>
-      <div class="chips" data-k="worst">
-        <button class="chip" type="button" data-v="Capture">Capture</button>
-        <button class="chip" type="button" data-v="Findability">Findability</button>
-        <button class="chip" type="button" data-v="Trust">Trust</button>
-        <button class="chip" type="button" data-v="Reuse">Reuse</button>
-        <button class="chip" type="button" data-v="Ownership">Ownership</button>
+    <div class="subhead"><span class="letter">C</span><h3>The worst link</h3></div>
+
+    <div class="q">
+      <span class="q-label q-req">Now that you've traced it &mdash; the single worst link in that chain is&hellip;</span>
+      <div class="links" data-k="worst" data-req>
+        <button class="link-chip" type="button" data-v="Capture">Capture<span>Was it ever written down?</span></button>
+        <button class="link-chip" type="button" data-v="Findability">Findability<span>Could someone else find it?</span></button>
+        <button class="link-chip" type="button" data-v="Trust">Trust<span>Do people act on it?</span></button>
+        <button class="link-chip" type="button" data-v="Reuse">Reuse<span>Does it change the next project?</span></button>
+        <button class="link-chip" type="button" data-v="Ownership">Ownership<span>Could you take it and leave?</span></button>
       </div>
+      <p class="req-warn">Pick one to continue.</p>
+    </div>
+
+    <div class="compare" id="compare" hidden></div>
+
+    <div class="q">
+      <label for="surprised">Are you surprised?
+        <span class="q-hint">There's nothing bad or wrong if it changed &mdash; it might just mean a preconceived notion, a bias, or a blind spot.</span>
+      </label>
+      <textarea id="surprised" data-k="surprised"></textarea>
+    </div>
+
+    <div class="note">
+      <p>Your friction points are your AI use cases. Don't start with the coolest tool. Start with
+      your biggest knowledge bottleneck.</p>
     </div>
 
     <div class="stepnav noprint">
@@ -458,59 +567,36 @@ input[type=number]{width:88px}
     </div>
   </section>
 
-  <!-- ===== WS3 ========================================================== -->
+  <!-- ===== Step 3 — WS3 ==================================================== -->
   <section id="ws3" data-step="3">
     <div class="sec-head"><span class="sec-num">3</span><h2>What you do Monday</h2></div>
-    <p class="sec-sub">Your 30-day plan. Small enough to actually happen.</p>
+    <p class="sec-sub">Your path to a 30-day plan. You'll leave with a hypothesis and a prompt that turns it into a checklist &mdash; not the plan itself, yet.</p>
+
+    <p class="carry" id="carry" hidden></p>
 
     <div class="q">
-      <p class="carry" id="carry" hidden></p>
-      <label for="p1">The one thing.<span class="q-hint">One sentence. Pull it from your lowest pillar or your worst link &mdash; not from a conference session you liked.</span></label>
-      <textarea id="p1" data-k="p1"></textarea>
+      <label id="whyPillarLabel" for="whyPillar">Why is that pillar your struggle?
+        <span class="q-hint">Scoped to what's in your purview over the next 30 days. 30 words or less.</span>
+      </label>
+      <textarea id="whyPillar" data-k="whyPillar"></textarea>
     </div>
 
     <div class="q">
-      <span class="q-label">The hypothesis.<span class="q-hint">A testable claim, not a goal.</span></span>
-      <div class="stem">
-        <div class="stem-line"><span>We believe that</span><input type="text" data-k="h1" placeholder="doing this thing"></div>
-        <div class="stem-line"><span>will</span><input type="text" data-k="h2" placeholder="produce this change"></div>
-        <div class="stem-line"><span>for</span><input type="text" data-k="h3" placeholder="these people"></div>
-        <div class="stem-line"><span>We'll know we're right when</span><input type="text" data-k="h4" placeholder="this is observably true"></div>
+      <label id="whyLinkLabel" for="whyLink">What does that mean for you &mdash; and what's one thing within your control you could focus on?
+        <span class="q-hint">Independent of the pillar. This is your own words on the worst link.</span>
+      </label>
+      <textarea id="whyLink" data-k="whyLink"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="q-label q-req">The hypothesis.<span class="q-hint">A testable claim, not a goal.</span></span>
+      <div class="stem" data-req-group="hyp">
+        <div class="stem-line"><span>We believe that</span><input type="text" data-k="h1" data-req placeholder="doing this thing"></div>
+        <div class="stem-line"><span>will</span><input type="text" data-k="h2" data-req placeholder="produce this change"></div>
+        <div class="stem-line"><span>for</span><input type="text" data-k="h3" data-req placeholder="these people"></div>
+        <div class="stem-line"><span>We'll know we're right when</span><input type="text" data-k="h4" data-req placeholder="this is observably true"></div>
       </div>
-    </div>
-
-    <div class="q">
-      <label for="p2">The pilot.<span class="q-hint">One team, one project, one workflow. Named people &mdash; not &ldquo;the BIM group.&rdquo;</span></label>
-      <textarea id="p2" data-k="p2"></textarea>
-    </div>
-
-    <div class="q">
-      <span class="q-label">Weeks 1&ndash;4.<span class="q-hint">One line each. Deliberately small enough to be embarrassing.</span></span>
-      <div class="weeks">
-        <div class="week"><span class="week-n">Week 1</span><input type="text" data-k="w1"></div>
-        <div class="week"><span class="week-n">Week 2</span><input type="text" data-k="w2"></div>
-        <div class="week"><span class="week-n">Week 3</span><input type="text" data-k="w3"></div>
-        <div class="week"><span class="week-n">Week 4</span><input type="text" data-k="w4"></div>
-      </div>
-    </div>
-
-    <div class="q">
-      <label for="p3">The measure.<span class="q-hint">The number or observation that says yes or no. Not &ldquo;adoption.&rdquo;</span></label>
-      <input type="text" id="p3" data-k="p3">
-    </div>
-
-    <div class="q">
-      <label for="p4">The why, in one sentence.<span class="q-hint">The thing you repeat when LinkedIn pulls the group off it.</span></label>
-      <textarea id="p4" data-k="p4"></textarea>
-    </div>
-
-    <div class="q">
-      <span class="q-label">What you are deliberately NOT doing.<span class="q-hint">Three lines. This is the box that makes &ldquo;pick one thing&rdquo; real instead of aspirational.</span></span>
-      <div class="weeks">
-        <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n1"></div>
-        <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n2"></div>
-        <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n3"></div>
-      </div>
+      <p class="req-warn" id="hypWarn">Fill in all four to continue.</p>
     </div>
 
     <div class="q">
@@ -522,13 +608,64 @@ input[type=number]{width:88px}
       <input type="date" id="p6" data-k="p6">
     </div>
 
+    <div class="note">
+      <p><strong>Now go pair up.</strong> Share your hypothesis with someone from a different role
+      or firm size. Their job: challenge it. Two rounds. Then come back here.</p>
+    </div>
+
     <div class="stepnav noprint">
       <button class="btn btn-ghost" type="button" data-goto="2">&larr; Back</button>
+      <span class="spacer"></span>
+      <button class="btn" type="button" data-goto="4">Continue &rarr; Before You Go</button>
+    </div>
+  </section>
+
+  <!-- ===== Step 4 — Before you go ========================================== -->
+  <section id="ws4" data-step="4">
+    <div class="sec-head"><span class="sec-num">4</span><h2>Before you go</h2></div>
+    <p class="sec-sub">Two minutes. Fill this in right after the pairing stops.</p>
+
+    <div class="q">
+      <span class="q-label">Did your hypothesis change?</span>
+      <div class="chips" data-k="hypChanged">
+        <button class="chip" type="button" data-v="Yes">Yes</button>
+        <button class="chip" type="button" data-v="No">No</button>
+      </div>
+    </div>
+    <div class="q">
+      <label for="hypChangedWhat">What changed?</label>
+      <textarea id="hypChangedWhat" data-k="hypChangedWhat"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="q-label">What you are deliberately NOT doing.<span class="q-hint">Three lines. This is the box that makes &ldquo;pick one thing&rdquo; real instead of aspirational.</span></span>
+      <div class="weeks">
+        <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n1"></div>
+        <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n2"></div>
+        <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n3"></div>
+      </div>
+    </div>
+
+    <div class="prompt-wrap noprint">
+      <h3>Your prompt</h3>
+      <p>Copy this into ChatGPT, Claude, or Gemini. It asks for one pilot and a checklist sized to
+      you &mdash; not a generic template. Run it again with a colleague's answers and compare.</p>
+      <textarea id="promptText" readonly></textarea>
+      <div class="prompt-actions">
+        <button class="btn" id="btnCopyPrompt" type="button">Copy prompt</button>
+        <button class="btn btn-open" id="openChatGPT" type="button">Open in ChatGPT</button>
+        <button class="btn btn-open" id="openClaude" type="button">Open in Claude</button>
+        <button class="btn btn-open" id="openGemini" type="button">Open in Gemini</button>
+      </div>
+    </div>
+
+    <div class="stepnav noprint">
+      <button class="btn btn-ghost" type="button" data-goto="3">&larr; Back</button>
       <span class="spacer"></span>
     </div>
   </section>
 
-  <div class="done" data-step="3">
+  <div class="done" data-step="4">
     <h2>Take it with you</h2>
     <p>Your answers are saved in this browser &mdash; come back to this URL and they'll still be here.
     But a plan that lives in a device browser is a plan that dies. Get it out.</p>
@@ -542,8 +679,9 @@ input[type=number]{width:88px}
       If that fights you, use Copy my plan and paste it into an email to yourself.
     </p>
     <p class="credit">
-      Session AS1719 &middot; Evan Troxel &amp; Kenton Grant &middot; Autodesk University 2026<br>
-      More at <a href="https://trxl.co">trxl.co</a>
+      <span class="row">Session AS1719 &middot; Autodesk University 2026</span>
+      <span class="row">Evan Troxel &middot; <a href="https://trxl.co">trxl.co</a></span>
+      <span class="row">Kenton Grant &middot; <a href="https://www.kentonworks.com/">kentonworks.com</a> &middot; <a href="mailto:hello@kentonworks.com">hello@kentonworks.com</a></span>
     </p>
   </div>
 
@@ -555,6 +693,14 @@ input[type=number]{width:88px}
   var KEY = 'au1719';
   var state = {};
   try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { state = {}; }
+
+  var LINKS = {
+    Capture: 'Was it ever written down?',
+    Findability: 'Could someone else find it?',
+    Trust: 'Do people act on it?',
+    Reuse: 'Does it change the next project?',
+    Ownership: 'Could you take it and leave?'
+  };
 
   function save(){
     // ponytail: whole-state rewrite on every keystroke. It's a few KB — a diff
@@ -570,15 +716,18 @@ input[type=number]{width:88px}
     el.addEventListener('input', function(){
       state[k] = el.value;
       save();
+      clearInvalid(el);
       if (el.dataset.bar) drawBars();
+      if (k === 'h1' || k === 'h2' || k === 'h3' || k === 'h4') clearInvalid(document.querySelector('[data-req-group="hyp"]'));
+      syncAll();
     });
   });
 
   // --- chip groups (single-select) --------------------------------------
-  var groups = document.querySelectorAll('.chips[data-k]');
+  var groups = document.querySelectorAll('.chips[data-k], .links[data-k]');
   Array.prototype.forEach.call(groups, function(g){
     var k = g.dataset.k;
-    var chips = g.querySelectorAll('.chip');
+    var chips = g.querySelectorAll('.chip,.link-chip');
     function paint(){
       Array.prototype.forEach.call(chips, function(c){
         c.setAttribute('aria-pressed', String(c.dataset.v === state[k]));
@@ -588,7 +737,7 @@ input[type=number]{width:88px}
       c.addEventListener('click', function(){
         // tapping the selected chip clears it — no way to un-answer otherwise
         state[k] = (state[k] === c.dataset.v) ? '' : c.dataset.v;
-        save(); paint(); sync();
+        save(); paint(); clearInvalid(g); syncAll();
       });
     });
     paint();
@@ -622,7 +771,7 @@ input[type=number]{width:88px}
       + (blanks.length ? ' (' + blanks.join(' and ') + ': not enough signal to score.)' : '');
   }
 
-  // --- carry-forward -----------------------------------------------------
+  // --- header badge + carry-forward + interpolated labels + compare ------
   function sync(){
     var pill = document.getElementById('barPillar');
     if (state.pillar) { pill.textContent = 'Lowest: ' + state.pillar; pill.hidden = false; }
@@ -632,15 +781,67 @@ input[type=number]{width:88px}
     var bits = [];
     if (state.worst) bits.push('worst link: ' + state.worst);
     if (state.pillar) bits.push('lowest pillar: ' + state.pillar);
+    if (state.losing) bits.push('losing: ' + state.losing);
     if (bits.length) { carry.textContent = '↓ From your answers — ' + bits.join(' · '); carry.hidden = false; }
     else carry.hidden = true;
+
+    var wpl = document.getElementById('whyPillarLabel');
+    wpl.firstChild.textContent = state.pillar ? ('Why is ' + state.pillar + ' your struggle?') : 'Why is that pillar your struggle?';
+    var wll = document.getElementById('whyLinkLabel');
+    wll.firstChild.textContent = state.worst
+      ? ('What does ' + state.worst + ' mean for you — and what’s one thing within your control you could focus on?')
+      : 'What does that mean for you — and what’s one thing within your control you could focus on?';
   }
 
-  drawBars(); sync();
+  function syncCompare(){
+    var box = document.getElementById('compare');
+    if (!state.gut || !state.worst) { box.hidden = true; return; }
+    box.hidden = false;
+    var html;
+    if (state.gut === state.worst) {
+      html = 'You stayed with <strong>' + state.worst + '</strong>.';
+    } else {
+      html = 'You guessed <strong>' + state.gut + '</strong>. After the audit you said <strong>' + state.worst + '</strong>.';
+    }
+    html += '<div class="reassure">There’s nothing bad or wrong if it changed — it might just mean a preconceived notion, a bias, or a blind spot you couldn’t see until you traced it.</div>';
+    box.innerHTML = html;
+  }
+
+  function syncAll(){ sync(); syncCompare(); buildPrompt(); }
+
+  drawBars(); syncAll();
+
+  // --- required-field flagging --------------------------------------------
+  function clearInvalid(el){ if (el) el.classList.remove('is-invalid'); }
+
+  var REQUIRED_STEPS = {
+    1: [{ sel: '[data-k="pillar"][data-req]', ok: function(){ return !!state.pillar; } }],
+    2: [
+      { sel: '[data-k="losing"][data-req]', ok: function(){ return !!state.losing; } },
+      { sel: '[data-k="gut"][data-req]', ok: function(){ return !!state.gut; } },
+      { sel: '[data-k="worst"][data-req]', ok: function(){ return !!state.worst; } }
+    ],
+    3: [
+      { sel: '[data-req-group="hyp"]', ok: function(){
+          return !!(state.h1 && state.h1.trim() && state.h2 && state.h2.trim() && state.h3 && state.h3.trim() && state.h4 && state.h4.trim());
+        } }
+    ],
+    4: []
+  };
+  var gateArmed = {};
+
+  function checkStep(n){
+    var reqs = REQUIRED_STEPS[n] || [];
+    var missing = [];
+    reqs.forEach(function(r){
+      if (!r.ok()) missing.push(r.sel);
+    });
+    return missing;
+  }
 
   // --- steps ---------------------------------------------------------------
   var STEP_KEY = 'au1719_step';
-  var totalSteps = 3;
+  var totalSteps = 4;
   function getStep(){
     var n = parseInt(localStorage.getItem(STEP_KEY), 10);
     return (n >= 1 && n <= totalSteps) ? n : 1;
@@ -658,10 +859,64 @@ input[type=number]{width:88px}
     });
     document.getElementById('steps').scrollIntoView({block:'start', behavior:'instant' in window ? 'instant' : 'auto'});
   }
+
+  function goto(target, fromStep){
+    var missing = fromStep ? checkStep(fromStep) : [];
+    if (missing.length && !gateArmed[fromStep]) {
+      gateArmed[fromStep] = true;
+      var first = null;
+      missing.forEach(function(sel){
+        var el = document.querySelector(sel);
+        if (el) { el.classList.add('is-invalid'); if (!first) first = el; }
+      });
+      if (first) first.scrollIntoView({block:'center', behavior:'smooth'});
+      return;
+    }
+    gateArmed[fromStep] = false;
+    setStep(target);
+  }
+
   document.querySelectorAll('[data-goto]').forEach(function(el){
-    el.addEventListener('click', function(){ setStep(parseInt(el.dataset.goto, 10)); });
+    el.addEventListener('click', function(){
+      var target = parseInt(el.dataset.goto, 10);
+      var current = getStep();
+      // Only gate when moving forward past a step with required fields.
+      if (target > current) goto(target, current);
+      else setStep(target);
+    });
   });
   setStep(getStep());
+
+  // --- prompt generator ----------------------------------------------------
+  function buildPrompt(){
+    var g = function(k){ return (state[k] || '').trim() || '(not answered)'; };
+    var lines = [];
+    lines.push('I’m building a 30-day AI adoption plan for my architecture/AEC firm. Here’s my diagnostic from a workshop exercise:');
+    lines.push('');
+    lines.push('- Where I’m losing the most right now: ' + g('losing'));
+    lines.push('- My firm’s lowest Digital Practice OS pillar: ' + g('pillar'));
+    lines.push('- My gut-check worst link (before the audit): ' + g('gut'));
+    lines.push('- My worst link after tracing a real example: ' + g('worst'));
+    if (state.gut && state.worst && state.gut !== state.worst) {
+      lines.push('  (These differ — that shift itself may be worth noting.)');
+    }
+    lines.push('- Why that pillar is my struggle, scoped to my own purview: ' + g('whyPillar'));
+    lines.push('- What that worst link means for me, and what I could focus on: ' + g('whyLink'));
+    lines.push('- My hypothesis: We believe that ' + g('h1') + ' will ' + g('h2') + ' for ' + g('h3') + '. We’ll know we’re right when ' + g('h4') + '.');
+    var notDoing = [state.n1, state.n2, state.n3].filter(Boolean);
+    lines.push('- What I am deliberately NOT doing right now: ' + (notDoing.length ? notDoing.join('; ') : '(not answered)'));
+    lines.push('');
+    lines.push('Based on this, give me:');
+    lines.push('1. One specific pilot — one team, one workflow, small enough to run in 30 days — that directly addresses my worst link and my lowest pillar.');
+    lines.push('2. A checklist sized to me, not a generic template. If I only need 5 steps, give me 5. If I need 12, give me 12.');
+    lines.push('3. Respect what I said I’m deliberately not doing — don’t recommend it, even if it seems related.');
+    lines.push('');
+    lines.push('Keep it concrete and actionable for someone starting Monday morning.');
+    var text = lines.join('\n');
+    var box = document.getElementById('promptText');
+    if (box) box.value = text;
+    return text;
+  }
 
   // --- print -------------------------------------------------------------
   // Textareas don't grow to fit their content when printed, so expand them first.
@@ -680,7 +935,7 @@ input[type=number]{width:88px}
   document.getElementById('btnPrint').addEventListener('click', doPrint);
   document.getElementById('btnPrint2').addEventListener('click', doPrint);
 
-  // --- copy --------------------------------------------------------------
+  // --- copy (worksheet plan) ------------------------------------------------
   function plainText(){
     var g = function(k){ return state[k] || '—'; };
     var L = [];
@@ -693,6 +948,8 @@ input[type=number]{width:88px}
       L.push('Subtotals: Capability ' + g('stC') + '/15 · Alignment ' + g('stA') + '/15 · Accountability ' + g('stX') + '/15');
     L.push('');
     L.push('2 — KNOWLEDGE FLOW AUDIT');
+    L.push('Losing: ' + g('losing'));
+    L.push('Gut-check worst link: ' + g('gut'));
     L.push('The question traced: ' + g('q0'));
     L.push('Who needed to know it: ' + g('t1'));
     L.push('Looked first: ' + g('t2'));
@@ -702,22 +959,23 @@ input[type=number]{width:88px}
     L.push('Survives that person leaving: ' + g('t6'));
     L.push('Scores — Capture ' + g('dCapture') + ' · Findability ' + g('dFind') + ' · Trust ' + g('dTrust') + ' · Reuse ' + g('dReuse') + ' · Ownership ' + g('dOwn'));
     L.push('WORST LINK: ' + g('worst'));
+    L.push('Surprised? ' + g('surprised'));
     L.push('');
     L.push('3 — MY 30-DAY PLAN');
-    L.push('The one thing: ' + g('p1'));
+    L.push('Why that pillar: ' + g('whyPillar'));
+    L.push('Why that link: ' + g('whyLink'));
     L.push('Hypothesis: We believe that ' + g('h1') + ' will ' + g('h2') + ' for ' + g('h3') + '. We’ll know we’re right when ' + g('h4') + '.');
-    L.push('The pilot: ' + g('p2'));
-    L.push('Week 1: ' + g('w1'));
-    L.push('Week 2: ' + g('w2'));
-    L.push('Week 3: ' + g('w3'));
-    L.push('Week 4: ' + g('w4'));
-    L.push('The measure: ' + g('p3'));
-    L.push('The why: ' + g('p4'));
-    L.push('NOT doing: ' + g('n1') + ' / ' + g('n2') + ' / ' + g('n3'));
     L.push('Owner: ' + g('p5'));
     L.push('Revisit on: ' + g('p6'));
     L.push('');
-    L.push('trxl.co');
+    L.push('4 — BEFORE YOU GO');
+    L.push('Did hypothesis change? ' + g('hypChanged') + ' — ' + g('hypChangedWhat'));
+    L.push('NOT doing: ' + g('n1') + ' / ' + g('n2') + ' / ' + g('n3'));
+    L.push('');
+    L.push('AI PROMPT');
+    L.push(buildPrompt());
+    L.push('');
+    L.push('trxl.co · kentonworks.com');
     return L.join('\n');
   }
   function flash(btn){
@@ -726,11 +984,10 @@ input[type=number]{width:88px}
     btn.classList.add('btn-ok');
     setTimeout(function(){ btn.textContent = t; btn.classList.remove('btn-ok'); }, 1800);
   }
-  function doCopy(e){
-    var btn = e.currentTarget, txt = plainText();
+  function copyText(text, btn){
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(txt).then(function(){ flash(btn); }, function(){ fallback(txt, btn); });
-    } else fallback(txt, btn);
+      navigator.clipboard.writeText(text).then(function(){ flash(btn); }, function(){ fallback(text, btn); });
+    } else fallback(text, btn);
   }
   function fallback(txt, btn){
     // ponytail: execCommand is deprecated but it's the only thing that works on
@@ -738,11 +995,23 @@ input[type=number]{width:88px}
     var ta = document.createElement('textarea');
     ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
     document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); flash(btn); } catch(err) { window.prompt('Copy your plan:', txt); }
+    try { document.execCommand('copy'); flash(btn); } catch(err) { window.prompt('Copy this:', txt); }
     document.body.removeChild(ta);
   }
-  document.getElementById('btnCopy').addEventListener('click', doCopy);
-  document.getElementById('btnCopy2').addEventListener('click', doCopy);
+  document.getElementById('btnCopy').addEventListener('click', function(e){ copyText(plainText(), e.currentTarget); });
+  document.getElementById('btnCopy2').addEventListener('click', function(e){ copyText(plainText(), e.currentTarget); });
+  document.getElementById('btnCopyPrompt').addEventListener('click', function(e){ copyText(buildPrompt(), e.currentTarget); });
+
+  // --- open-in deep links ---------------------------------------------------
+  document.getElementById('openChatGPT').addEventListener('click', function(){
+    window.open('https://chatgpt.com/?q=' + encodeURIComponent(buildPrompt()), '_blank', 'noopener');
+  });
+  document.getElementById('openClaude').addEventListener('click', function(){
+    window.open('https://claude.ai/new?q=' + encodeURIComponent(buildPrompt()), '_blank', 'noopener');
+  });
+  document.getElementById('openGemini').addEventListener('click', function(){
+    window.open('https://gemini.google.com/app?q=' + encodeURIComponent(buildPrompt()), '_blank', 'noopener');
+  });
 })();
 </script>
 </body>
