@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Build Your Firm's AI Adoption Plan — AU 2026 Session AS1719</title>
+<meta name="description" content="Worksheets 2 and 3 for AU 2026 session AS1719: the Knowledge Flow Audit and your 30-day AI adoption plan. Your answers stay on your phone.">
+<meta property="og:title" content="Build Your Firm's AI Adoption Plan — AU 2026">
+<meta property="og:description" content="Knowledge Flow Audit + 30-day plan. Session AS1719 with Evan Troxel and Kenton Grant.">
+<meta property="og:url" content="https://assets.trxl.co/au1719/">
+<link rel="icon" href="../favicon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* --- TRXL tokens (inlined subset of trxl-tokens.css) --------------------- */
+:root{
+  --trxl-coral:#EB4F5D; --trxl-plum:#9C3B6E; --trxl-indigo:#614F9B;
+  --grad-trxl:linear-gradient(45deg,var(--trxl-coral) 0%,var(--trxl-plum) 45%,var(--trxl-indigo) 100%);
+  --ink:#0A0A0B; --graphite:#4A4A52; --slate:#6E6E78; --stone:#9A9AA4;
+  --fog:#D6D6DB; --mist:#EDEDF0; --paper:#F7F6F3; --white:#FFFFFF; --divider:#E4E3DF;
+  --bg:var(--paper); --fg:var(--ink); --fg-muted:var(--graphite); --fg-subtle:var(--slate);
+  --border:var(--fog); --accent:var(--trxl-plum); --accent-fg:var(--white);
+  --danger:#B83838; --success:#2E7D5B;
+  --font-display:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+  --font-sans:'Inter','Helvetica Neue',Arial,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:24px; --s-6:32px; --s-7:48px;
+  --r-2:4px; --r-3:8px; --r-pill:999px;
+  --focus-ring:0 0 0 3px rgba(156,59,110,.35);
+  --measure:62ch;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--font-sans); font-size:16px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+:focus-visible{outline:none; box-shadow:var(--focus-ring); border-radius:var(--r-2)}
+
+/* --- Header -------------------------------------------------------------- */
+.bar{
+  position:sticky; top:0; z-index:20; background:rgba(247,246,243,.94);
+  backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--divider);
+  padding:var(--s-3) var(--s-4); padding-top:max(var(--s-3),env(safe-area-inset-top));
+  display:flex; gap:var(--s-3); align-items:center; flex-wrap:wrap;
+}
+.bar-id{font-family:var(--font-mono); font-size:12px; letter-spacing:.06em; color:var(--fg-subtle); text-transform:uppercase}
+.bar-pillar{
+  font-size:12px; font-weight:600; padding:3px 10px; border-radius:var(--r-pill);
+  background:var(--grad-trxl); color:#fff; white-space:nowrap;
+}
+.bar-pillar[hidden]{display:none}
+.bar-spacer{flex:1}
+.btn{
+  font-family:var(--font-sans); font-size:13px; font-weight:600;
+  padding:7px 14px; border-radius:var(--r-pill); border:1px solid var(--ink);
+  background:var(--ink); color:var(--white); cursor:pointer;
+  transition:opacity 120ms ease;
+}
+.btn:hover{opacity:.82}
+.btn-ghost{background:transparent; color:var(--ink)}
+.btn-ok{background:var(--success); border-color:var(--success)}
+
+/* --- Layout -------------------------------------------------------------- */
+main{max-width:760px; margin:0 auto; padding:var(--s-6) var(--s-4) var(--s-7)}
+.hero{padding-bottom:var(--s-5); border-bottom:2px solid var(--ink); margin-bottom:var(--s-6)}
+.hero h1{
+  font-family:var(--font-display); font-weight:700; letter-spacing:-.02em;
+  font-size:clamp(1.9rem,1.3rem+2.4vw,2.9rem); line-height:1.08; margin:var(--s-2) 0 var(--s-3);
+}
+.eyebrow{
+  font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--fg-subtle); margin:0;
+}
+.hero p{color:var(--fg-muted); max-width:var(--measure); margin:0}
+
+section{margin:0 0 var(--s-7); scroll-margin-top:72px}
+.sec-head{display:flex; gap:var(--s-3); align-items:baseline; margin-bottom:var(--s-2)}
+.sec-num{
+  font-family:var(--font-mono); font-size:13px; font-weight:500; color:var(--white);
+  background:var(--ink); border-radius:var(--r-2); padding:2px 8px; flex:none;
+}
+.sec-head h2{
+  font-family:var(--font-display); font-weight:600; letter-spacing:-.01em;
+  font-size:clamp(1.4rem,1.1rem+1.1vw,1.9rem); line-height:1.2; margin:0;
+}
+.sec-sub{color:var(--fg-subtle); font-size:14px; margin:0 0 var(--s-5); max-width:var(--measure)}
+.note{
+  background:var(--white); border-left:3px solid var(--accent);
+  padding:var(--s-4); margin:0 0 var(--s-5); font-size:14.5px; color:var(--fg-muted);
+}
+.note strong{color:var(--fg)}
+.note p{margin:0 0 var(--s-2)} .note p:last-child{margin:0}
+
+/* --- Fields -------------------------------------------------------------- */
+.q{margin:0 0 var(--s-5)}
+.q > label,.q-label{
+  display:block; font-weight:600; font-size:15px; margin-bottom:var(--s-2); line-height:1.35;
+}
+.q-hint{display:block; font-weight:400; font-size:13px; color:var(--fg-subtle); margin-top:2px}
+input[type=text],input[type=date],input[type=number],textarea{
+  width:100%; font-family:var(--font-sans); font-size:16px; color:var(--fg);
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r-2);
+  padding:10px 12px; line-height:1.5;
+}
+input:focus,textarea:focus{border-color:var(--accent)}
+textarea{resize:vertical; min-height:76px}
+input[type=number]{width:88px}
+
+/* Chips */
+.chips{display:flex; flex-wrap:wrap; gap:var(--s-2)}
+.chip{
+  font-family:var(--font-sans); font-size:14px; font-weight:500;
+  padding:8px 14px; border:1px solid var(--border); border-radius:var(--r-pill);
+  background:var(--white); color:var(--fg-muted); cursor:pointer; text-align:left;
+  transition:all 120ms ease;
+}
+.chip:hover{border-color:var(--stone)}
+.chip[aria-pressed=true]{background:var(--ink); border-color:var(--ink); color:var(--white)}
+.chips-scale .chip{min-width:44px; text-align:center; font-family:var(--font-mono)}
+
+/* Pillar picker */
+.pillars{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:var(--s-3)}
+.pillar{
+  font-family:var(--font-display); font-size:17px; font-weight:600; text-align:left;
+  padding:var(--s-4); border:1.5px solid var(--border); border-radius:var(--r-3);
+  background:var(--white); color:var(--fg); cursor:pointer; transition:all 140ms ease;
+}
+.pillar span{display:block; font-family:var(--font-sans); font-size:12.5px; font-weight:400; color:var(--fg-subtle); margin-top:3px; line-height:1.35}
+.pillar:hover{border-color:var(--stone)}
+.pillar[aria-pressed=true]{border-color:var(--accent); background:var(--accent); color:#fff}
+.pillar[aria-pressed=true] span{color:rgba(255,255,255,.82)}
+
+/* Subtotal bars */
+.subtotals{display:flex; gap:var(--s-4); flex-wrap:wrap; align-items:flex-end}
+.subtotal label{display:block; font-size:12.5px; font-weight:600; color:var(--fg-subtle); margin-bottom:var(--s-1)}
+.bars{margin-top:var(--s-4)}
+.bar-row{display:grid; grid-template-columns:96px 1fr 46px; gap:var(--s-3); align-items:center; margin-bottom:var(--s-2)}
+.bar-name{font-size:13px; font-weight:600}
+.bar-track{height:16px; background:var(--mist); border-radius:var(--r-2); overflow:hidden}
+.bar-fill{height:100%; background:var(--grad-trxl); border-radius:var(--r-2); transition:width 260ms cubic-bezier(.22,1,.36,1)}
+.bar-val{font-family:var(--font-mono); font-size:12.5px; color:var(--fg-subtle); text-align:right}
+.bar-row.is-low .bar-name{color:var(--accent)}
+.bar-row.is-blank .bar-track{background:repeating-linear-gradient(45deg,var(--mist),var(--mist) 4px,var(--white) 4px,var(--white) 8px)}
+.bars-read{font-size:14px; font-weight:600; margin-top:var(--s-3)}
+
+/* Trace boxes */
+.trace{counter-reset:trace}
+.trace .q{
+  background:var(--white); border:1px solid var(--border); border-radius:var(--r-3);
+  padding:var(--s-4); margin-bottom:var(--s-3);
+}
+.trace .q > label::before,.trace .q .q-label::before{
+  counter-increment:trace; content:counter(trace);
+  font-family:var(--font-mono); font-size:11px; color:var(--white); background:var(--stone);
+  border-radius:var(--r-pill); padding:1px 7px; margin-right:8px; vertical-align:2px;
+}
+
+/* Diagnostic rows */
+.diag{border-top:1px solid var(--divider)}
+.diag-row{padding:var(--s-4) 0; border-bottom:1px solid var(--divider)}
+.diag-name{font-family:var(--font-display); font-size:16px; font-weight:600; margin-bottom:2px}
+.diag-anchors{display:flex; justify-content:space-between; gap:var(--s-4); font-size:12.5px; color:var(--fg-subtle); margin-bottom:var(--s-3)}
+.diag-anchors span:last-child{text-align:right}
+.diag-row.is-key{background:var(--white); margin:0 calc(var(--s-4) * -1); padding-left:var(--s-4); padding-right:var(--s-4)}
+.diag-row.is-key .diag-name::after{
+  content:'strategic'; font-family:var(--font-sans); font-size:10px; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--accent);
+  border:1px solid var(--accent); border-radius:var(--r-pill); padding:1px 7px; margin-left:8px; vertical-align:2px;
+}
+
+/* Weeks */
+.weeks{display:grid; gap:var(--s-2)}
+.week{display:grid; grid-template-columns:74px 1fr; gap:var(--s-3); align-items:center}
+.week-n{font-family:var(--font-mono); font-size:12.5px; color:var(--fg-subtle); font-weight:500}
+.stem{display:grid; gap:var(--s-2)}
+.stem-line{display:flex; align-items:center; gap:var(--s-2); flex-wrap:wrap}
+.stem-line span{font-size:15px; color:var(--fg-muted); white-space:nowrap}
+.stem-line input{flex:1; min-width:140px}
+
+.carry{
+  font-size:13.5px; color:var(--accent); font-weight:600; margin-bottom:var(--s-2);
+}
+.carry[hidden]{display:none}
+
+/* Footer actions */
+.done{
+  border-top:2px solid var(--ink); padding-top:var(--s-5); margin-top:var(--s-7);
+}
+.done h2{font-family:var(--font-display); font-size:1.5rem; margin:0 0 var(--s-2)}
+.done p{color:var(--fg-muted); font-size:14.5px; max-width:var(--measure)}
+.actions{display:flex; gap:var(--s-3); flex-wrap:wrap; margin:var(--s-5) 0}
+.actions .btn{font-size:15px; padding:12px 22px}
+.credit{font-size:13px; color:var(--fg-subtle); margin-top:var(--s-6); border-top:1px solid var(--divider); padding-top:var(--s-4)}
+.credit a{color:var(--accent)}
+
+/* --- Print ---------------------------------------------------------------
+   Doubles as the AU handout PDF: printing with every field blank produces a
+   usable paper worksheet. */
+@media print{
+  @page{margin:14mm 12mm}
+  :root{--bg:#fff}
+  body{background:#fff; font-size:10.5pt; line-height:1.4}
+  .noprint{display:none !important}
+  main{max-width:none; padding:0}
+  .hero{margin-bottom:14pt; padding-bottom:8pt}
+  .hero h1{font-size:20pt}
+  section{margin-bottom:16pt; break-inside:avoid}
+  .sec-head h2{font-size:14pt}
+  h2,h3,.sec-head{break-after:avoid}
+  .note{background:#fff; border-left:2pt solid #000; padding:6pt 8pt; font-size:9pt}
+  .q{margin-bottom:9pt; break-inside:avoid}
+  .trace .q{padding:6pt 8pt; margin-bottom:6pt; break-inside:avoid}
+  input[type=text],input[type=date],input[type=number],textarea{
+    border:0; border-bottom:.75pt solid #666; border-radius:0; padding:2pt 0;
+    background:#fff; font-size:10.5pt;
+  }
+  textarea{border:.75pt solid #999; padding:4pt; min-height:0}
+  .chip{padding:2pt 7pt; font-size:8.5pt; border-color:#999}
+  .chip[aria-pressed=true]{background:#000 !important; color:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .pillar{padding:6pt 8pt; font-size:11pt}
+  .pillar[aria-pressed=true]{background:#000 !important; color:#fff !important; border-color:#000; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .pillar[aria-pressed=true] span{color:#ddd}
+  .bar-fill{background:#000 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .bar-track{background:#e6e6e6}
+  .diag-row{padding:5pt 0; break-inside:avoid}
+  .diag-row.is-key{background:#fff; margin:0; padding-left:0; padding-right:0}
+  .done{break-inside:avoid}
+  a[href]::after{content:''}
+}
+</style>
+</head>
+<body>
+
+<header class="bar noprint">
+  <span class="bar-id">AS1719 · AU 2026</span>
+  <span class="bar-pillar" id="barPillar" hidden></span>
+  <span class="bar-spacer"></span>
+  <button class="btn btn-ghost" id="btnCopy" type="button">Copy my plan</button>
+  <button class="btn" id="btnPrint" type="button">Save as PDF</button>
+</header>
+
+<main>
+
+  <div class="hero">
+    <p class="eyebrow">Autodesk University 2026 · Hands-on Workshop</p>
+    <h1>Build Your Firm's AI&nbsp;Adoption Plan</h1>
+    <p>Worksheets 2 and 3. Everything you type stays on this phone &mdash; nothing is sent anywhere.
+    When you're done, save it as a PDF or copy it to yourself.</p>
+  </div>
+
+  <!-- ===== WS1 carry-forward ============================================ -->
+  <section id="ws1">
+    <div class="sec-head"><span class="sec-num">1</span><h2>Where you're starting from</h2></div>
+    <p class="sec-sub">You just scored nine dimensions on the form. Bring the answer over here.</p>
+
+    <div class="q">
+      <span class="q-label">Which pillar came out lowest?</span>
+      <div class="pillars chips" data-k="pillar">
+        <button class="pillar chip" type="button" data-v="Capability">Capability<span>Tools · Data · AI literacy</span></button>
+        <button class="pillar chip" type="button" data-v="Alignment">Alignment<span>Leadership · Culture · Governance</span></button>
+        <button class="pillar chip" type="button" data-v="Accountability">Accountability<span>Metrics · Feedback loops · Impact</span></button>
+      </div>
+    </div>
+
+    <div class="q">
+      <span class="q-label">Optional: see the shape
+        <span class="q-hint">Add up each section of the form and enter the three subtotals. The total out of 45 tells you almost nothing &mdash; the shape is the diagnostic. Leave a pillar blank if you answered &ldquo;not sure&rdquo; too often to score it.</span>
+      </span>
+      <div class="subtotals">
+        <div class="subtotal"><label for="stC">Capability /15</label><input type="number" id="stC" min="3" max="15" inputmode="numeric" data-k="stC" data-bar="Capability"></div>
+        <div class="subtotal"><label for="stA">Alignment /15</label><input type="number" id="stA" min="3" max="15" inputmode="numeric" data-k="stA" data-bar="Alignment"></div>
+        <div class="subtotal"><label for="stX">Accountability /15</label><input type="number" id="stX" min="3" max="15" inputmode="numeric" data-k="stX" data-bar="Accountability"></div>
+      </div>
+      <div class="bars" id="bars">
+        <div class="bar-row is-blank" data-bar-row="Capability"><span class="bar-name">Capability</span><span class="bar-track"><span class="bar-fill" style="width:0"></span></span><span class="bar-val">&ndash;</span></div>
+        <div class="bar-row is-blank" data-bar-row="Alignment"><span class="bar-name">Alignment</span><span class="bar-track"><span class="bar-fill" style="width:0"></span></span><span class="bar-val">&ndash;</span></div>
+        <div class="bar-row is-blank" data-bar-row="Accountability"><span class="bar-name">Accountability</span><span class="bar-track"><span class="bar-fill" style="width:0"></span></span><span class="bar-val">&ndash;</span></div>
+        <p class="bars-read" id="barsRead"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WS2 ========================================================== -->
+  <section id="ws2">
+    <div class="sec-head"><span class="sec-num">2</span><h2>Where you're losing time</h2></div>
+    <p class="sec-sub">The Knowledge Flow Audit. Don't answer in general &mdash; trace one real thing.</p>
+
+    <div class="note">
+      <p>Somebody at your firm has already run the experiment: fed a spec section and a few drawings
+      into a chatbot, got back something fluent and mostly right. Then ran it across ten more and the
+      results scattered &mdash; strong on one, wrong on the next, differently wrong on the third.</p>
+      <p><strong>The failure wasn't the model. It was that there was no structure underneath it.</strong>
+      AI can only retrieve what you captured, and it will confidently reuse what you don't trust.
+      This worksheet is where you find out whether you have anything to retrieve.</p>
+    </div>
+
+    <div class="q">
+      <label for="q0">Pick one real question someone on your team had to answer in the last month.
+        <span class="q-hint">Not a big one. A detail, a code question, a product selection, &ldquo;how did we handle this last time.&rdquo;</span>
+      </label>
+      <textarea id="q0" data-k="q0" placeholder="The question was&hellip;"></textarea>
+    </div>
+
+    <div class="trace">
+      <div class="q">
+        <label for="t1">Who needed to know it?<span class="q-hint">Role and project.</span></label>
+        <input type="text" id="t1" data-k="t1" placeholder="e.g. Job captain, mid-size TI">
+      </div>
+      <div class="q">
+        <span class="q-label">Where did they look first?</span>
+        <div class="chips" data-k="t2">
+          <button class="chip" type="button" data-v="Asked a person">Asked a person</button>
+          <button class="chip" type="button" data-v="Dug through a project folder">Dug through a project folder</button>
+          <button class="chip" type="button" data-v="Searched a system">Searched a system</button>
+          <button class="chip" type="button" data-v="Slack / Teams">Slack / Teams</button>
+          <button class="chip" type="button" data-v="Didn't look — just redid the work">Didn't look &mdash; just redid the work</button>
+        </div>
+      </div>
+      <div class="q">
+        <span class="q-label">How long until they had an answer?</span>
+        <div class="chips" data-k="t3">
+          <button class="chip" type="button" data-v="Minutes">Minutes</button>
+          <button class="chip" type="button" data-v="Hours">Hours</button>
+          <button class="chip" type="button" data-v="Days">Days</button>
+          <button class="chip" type="button" data-v="Never">Never</button>
+        </div>
+      </div>
+      <div class="q">
+        <span class="q-label">Where did the answer actually live?</span>
+        <div class="chips" data-k="t4">
+          <button class="chip" type="button" data-v="One person's head">One person's head</button>
+          <button class="chip" type="button" data-v="A project folder">A project folder</button>
+          <button class="chip" type="button" data-v="A shared library">A shared library</button>
+          <button class="chip" type="button" data-v="A real system of record">A real system of record</button>
+          <button class="chip" type="button" data-v="Nowhere — it was recreated">Nowhere &mdash; it was recreated</button>
+        </div>
+      </div>
+      <div class="q">
+        <span class="q-label">After it was answered, where did the answer go?</span>
+        <div class="chips" data-k="t5">
+          <button class="chip" type="button" data-v="Nowhere">Nowhere</button>
+          <button class="chip" type="button" data-v="Back into that project only">Back into that project only</button>
+          <button class="chip" type="button" data-v="A shared standard">A shared standard</button>
+          <button class="chip" type="button" data-v="Somewhere anyone could find it">Somewhere anyone could find it</button>
+        </div>
+      </div>
+      <div class="q">
+        <span class="q-label">If that person left tomorrow, does the answer survive?</span>
+        <div class="chips" data-k="t6">
+          <button class="chip" type="button" data-v="Yes">Yes</button>
+          <button class="chip" type="button" data-v="No">No</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-display); font-size:1.15rem; margin:var(--s-6) 0 var(--s-2)">Now score that chain</h3>
+    <p class="sec-sub">1 is the floor, 5 is the ceiling. Score what's true, not what's on the website.</p>
+
+    <div class="diag">
+      <div class="diag-row">
+        <div class="diag-name">Capture</div>
+        <div class="diag-anchors"><span>1 &middot; It was never written down</span><span>5 &middot; It lands somewhere by default</span></div>
+        <div class="chips chips-scale" data-k="dCapture"><button class="chip" type="button" data-v="1">1</button><button class="chip" type="button" data-v="2">2</button><button class="chip" type="button" data-v="3">3</button><button class="chip" type="button" data-v="4">4</button><button class="chip" type="button" data-v="5">5</button></div>
+      </div>
+      <div class="diag-row">
+        <div class="diag-name">Findability</div>
+        <div class="diag-anchors"><span>1 &middot; You have to know who to ask</span><span>5 &middot; Someone who wasn't there can find it</span></div>
+        <div class="chips chips-scale" data-k="dFind"><button class="chip" type="button" data-v="1">1</button><button class="chip" type="button" data-v="2">2</button><button class="chip" type="button" data-v="3">3</button><button class="chip" type="button" data-v="4">4</button><button class="chip" type="button" data-v="5">5</button></div>
+      </div>
+      <div class="diag-row">
+        <div class="diag-name">Trust</div>
+        <div class="diag-anchors"><span>1 &middot; People re-verify what they find</span><span>5 &middot; People act on it</span></div>
+        <div class="chips chips-scale" data-k="dTrust"><button class="chip" type="button" data-v="1">1</button><button class="chip" type="button" data-v="2">2</button><button class="chip" type="button" data-v="3">3</button><button class="chip" type="button" data-v="4">4</button><button class="chip" type="button" data-v="5">5</button></div>
+      </div>
+      <div class="diag-row">
+        <div class="diag-name">Reuse</div>
+        <div class="diag-anchors"><span>1 &middot; It changes nothing next time</span><span>5 &middot; It changes the next project</span></div>
+        <div class="chips chips-scale" data-k="dReuse"><button class="chip" type="button" data-v="1">1</button><button class="chip" type="button" data-v="2">2</button><button class="chip" type="button" data-v="3">3</button><button class="chip" type="button" data-v="4">4</button><button class="chip" type="button" data-v="5">5</button></div>
+      </div>
+      <div class="diag-row is-key">
+        <div class="diag-name">Ownership</div>
+        <div class="diag-anchors"><span>1 &middot; It lives in a vendor's platform on their terms</span><span>5 &middot; You could take it and leave tomorrow</span></div>
+        <div class="chips chips-scale" data-k="dOwn"><button class="chip" type="button" data-v="1">1</button><button class="chip" type="button" data-v="2">2</button><button class="chip" type="button" data-v="3">3</button><button class="chip" type="button" data-v="4">4</button><button class="chip" type="button" data-v="5">5</button></div>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:var(--s-5)">
+      <p><strong>Why Ownership is on this list.</strong> The other four rows are internal hygiene.
+      This one is strategic. McKinsey's test for when data becomes an advantage is four-part: captured
+      as the work happens, structured for reuse, traceable to origin, <em>and held with the rights to
+      keep learning from it.</em> That fourth clause is the one most firms already answered years ago,
+      in software contracts nobody re-read. It applies to every vendor in this room.</p>
+    </div>
+
+    <div class="q" style="margin-top:var(--s-6)">
+      <span class="q-label">The single worst link in that chain is&hellip;</span>
+      <div class="chips" data-k="worst">
+        <button class="chip" type="button" data-v="Capture">Capture</button>
+        <button class="chip" type="button" data-v="Findability">Findability</button>
+        <button class="chip" type="button" data-v="Trust">Trust</button>
+        <button class="chip" type="button" data-v="Reuse">Reuse</button>
+        <button class="chip" type="button" data-v="Ownership">Ownership</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WS3 ========================================================== -->
+  <section id="ws3">
+    <div class="sec-head"><span class="sec-num">3</span><h2>What you do Monday</h2></div>
+    <p class="sec-sub">Your 30-day plan. Small enough to actually happen.</p>
+
+    <div class="q">
+      <p class="carry" id="carry" hidden></p>
+      <label for="p1">The one thing.<span class="q-hint">One sentence. Pull it from your lowest pillar or your worst link &mdash; not from a conference session you liked.</span></label>
+      <textarea id="p1" data-k="p1"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="q-label">The hypothesis.<span class="q-hint">A testable claim, not a goal.</span></span>
+      <div class="stem">
+        <div class="stem-line"><span>We believe that</span><input type="text" data-k="h1" placeholder="doing this thing"></div>
+        <div class="stem-line"><span>will</span><input type="text" data-k="h2" placeholder="produce this change"></div>
+        <div class="stem-line"><span>for</span><input type="text" data-k="h3" placeholder="these people"></div>
+        <div class="stem-line"><span>We'll know we're right when</span><input type="text" data-k="h4" placeholder="this is observably true"></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <label for="p2">The pilot.<span class="q-hint">One team, one project, one workflow. Named people &mdash; not &ldquo;the BIM group.&rdquo;</span></label>
+      <textarea id="p2" data-k="p2"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="q-label">Weeks 1&ndash;4.<span class="q-hint">One line each. Deliberately small enough to be embarrassing.</span></span>
+      <div class="weeks">
+        <div class="week"><span class="week-n">Week 1</span><input type="text" data-k="w1"></div>
+        <div class="week"><span class="week-n">Week 2</span><input type="text" data-k="w2"></div>
+        <div class="week"><span class="week-n">Week 3</span><input type="text" data-k="w3"></div>
+        <div class="week"><span class="week-n">Week 4</span><input type="text" data-k="w4"></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <label for="p3">The measure.<span class="q-hint">The number or observation that says yes or no. Not &ldquo;adoption.&rdquo;</span></label>
+      <input type="text" id="p3" data-k="p3">
+    </div>
+
+    <div class="q">
+      <label for="p4">The why, in one sentence.<span class="q-hint">The thing you repeat when LinkedIn pulls the group off it.</span></label>
+      <textarea id="p4" data-k="p4"></textarea>
+    </div>
+
+    <div class="q">
+      <span class="q-label">What you are deliberately NOT doing.<span class="q-hint">Three lines. This is the box that makes &ldquo;pick one thing&rdquo; real instead of aspirational.</span></span>
+      <div class="weeks">
+        <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n1"></div>
+        <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n2"></div>
+        <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n3"></div>
+      </div>
+    </div>
+
+    <div class="q">
+      <label for="p5">Owner</label>
+      <input type="text" id="p5" data-k="p5" placeholder="An actual name, even if it's yours">
+    </div>
+    <div class="q">
+      <label for="p6">The date you look at this again</label>
+      <input type="date" id="p6" data-k="p6">
+    </div>
+  </section>
+
+  <div class="done">
+    <h2>Take it with you</h2>
+    <p>Your answers are saved in this browser &mdash; come back to this URL and they'll still be here.
+    But a plan that lives in a phone browser is a plan that dies. Get it out.</p>
+    <div class="actions noprint">
+      <button class="btn" id="btnPrint2" type="button">Save as PDF</button>
+      <button class="btn btn-ghost" id="btnCopy2" type="button">Copy my plan</button>
+    </div>
+    <p class="caption" style="font-size:13px; color:var(--fg-subtle)">
+      <strong>iPhone:</strong> Save as PDF &rarr; Share &rarr; Print &rarr; pinch out on the preview &rarr; Save to Files.<br>
+      <strong>Android:</strong> Save as PDF &rarr; choose &ldquo;Save as PDF&rdquo; as the destination.<br>
+      If that fights you, use Copy my plan and paste it into an email to yourself.
+    </p>
+    <p class="credit">
+      Session AS1719 &middot; Evan Troxel &amp; Kenton Grant &middot; Autodesk University 2026<br>
+      More at <a href="https://trxl.co">trxl.co</a>
+    </p>
+  </div>
+
+</main>
+
+<script>
+(function(){
+  'use strict';
+  var KEY = 'au1719';
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { state = {}; }
+
+  function save(){
+    // ponytail: whole-state rewrite on every keystroke. It's a few KB — a diff
+    // would be more code than it saves.
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {}
+  }
+
+  // --- text/number/date inputs ------------------------------------------
+  var fields = document.querySelectorAll('input[data-k], textarea[data-k]');
+  Array.prototype.forEach.call(fields, function(el){
+    var k = el.dataset.k;
+    if (state[k] != null) el.value = state[k];
+    el.addEventListener('input', function(){
+      state[k] = el.value;
+      save();
+      if (el.dataset.bar) drawBars();
+    });
+  });
+
+  // --- chip groups (single-select) --------------------------------------
+  var groups = document.querySelectorAll('.chips[data-k]');
+  Array.prototype.forEach.call(groups, function(g){
+    var k = g.dataset.k;
+    var chips = g.querySelectorAll('.chip');
+    function paint(){
+      Array.prototype.forEach.call(chips, function(c){
+        c.setAttribute('aria-pressed', String(c.dataset.v === state[k]));
+      });
+    }
+    Array.prototype.forEach.call(chips, function(c){
+      c.addEventListener('click', function(){
+        // tapping the selected chip clears it — no way to un-answer otherwise
+        state[k] = (state[k] === c.dataset.v) ? '' : c.dataset.v;
+        save(); paint(); sync();
+      });
+    });
+    paint();
+  });
+
+  // --- WS1 bars ----------------------------------------------------------
+  var BARS = ['Capability','Alignment','Accountability'];
+  function score(name){
+    var el = document.querySelector('input[data-bar="' + name + '"]');
+    var n = parseInt(el && el.value, 10);
+    return (isNaN(n) || n < 3 || n > 15) ? null : n;
+  }
+  function drawBars(){
+    var vals = {}, any = false, lowest = null;
+    BARS.forEach(function(b){
+      var v = score(b); vals[b] = v;
+      if (v !== null){ any = true; if (lowest === null || v < vals[lowest]) lowest = b; }
+    });
+    BARS.forEach(function(b){
+      var row = document.querySelector('[data-bar-row="' + b + '"]');
+      var v = vals[b];
+      row.classList.toggle('is-blank', v === null);
+      row.classList.toggle('is-low', any && b === lowest);
+      row.querySelector('.bar-fill').style.width = v === null ? '0' : Math.round(v / 15 * 100) + '%';
+      row.querySelector('.bar-val').innerHTML = v === null ? '&ndash;' : v + '/15';
+    });
+    var read = document.getElementById('barsRead');
+    if (!any) { read.textContent = ''; return; }
+    var blanks = BARS.filter(function(b){ return vals[b] === null; });
+    read.textContent = 'Your lowest bar is ' + lowest + '. That’s where the next 30 days go.'
+      + (blanks.length ? ' (' + blanks.join(' and ') + ': not enough signal to score.)' : '');
+  }
+
+  // --- carry-forward -----------------------------------------------------
+  function sync(){
+    var pill = document.getElementById('barPillar');
+    if (state.pillar) { pill.textContent = 'Lowest: ' + state.pillar; pill.hidden = false; }
+    else pill.hidden = true;
+
+    var carry = document.getElementById('carry');
+    var bits = [];
+    if (state.worst) bits.push('worst link: ' + state.worst);
+    if (state.pillar) bits.push('lowest pillar: ' + state.pillar);
+    if (bits.length) { carry.textContent = '↓ From your answers — ' + bits.join(' · '); carry.hidden = false; }
+    else carry.hidden = true;
+  }
+
+  drawBars(); sync();
+
+  // --- print -------------------------------------------------------------
+  // Textareas don't grow to fit their content when printed, so expand them first.
+  window.addEventListener('beforeprint', function(){
+    Array.prototype.forEach.call(document.querySelectorAll('textarea'), function(t){
+      t.dataset.h = t.style.height;
+      if (t.value) t.style.height = (t.scrollHeight + 4) + 'px';
+    });
+  });
+  window.addEventListener('afterprint', function(){
+    Array.prototype.forEach.call(document.querySelectorAll('textarea'), function(t){
+      t.style.height = t.dataset.h || '';
+    });
+  });
+  function doPrint(){ window.print(); }
+  document.getElementById('btnPrint').addEventListener('click', doPrint);
+  document.getElementById('btnPrint2').addEventListener('click', doPrint);
+
+  // --- copy --------------------------------------------------------------
+  function plainText(){
+    var g = function(k){ return state[k] || '—'; };
+    var L = [];
+    L.push('MY AI ADOPTION PLAN');
+    L.push('AU 2026 · Session AS1719 · Build Your Firm’s AI Adoption Plan');
+    L.push('');
+    L.push('1 — WHERE I’M STARTING FROM');
+    L.push('Lowest pillar: ' + g('pillar'));
+    if (state.stC || state.stA || state.stX)
+      L.push('Subtotals: Capability ' + g('stC') + '/15 · Alignment ' + g('stA') + '/15 · Accountability ' + g('stX') + '/15');
+    L.push('');
+    L.push('2 — KNOWLEDGE FLOW AUDIT');
+    L.push('The question traced: ' + g('q0'));
+    L.push('Who needed to know it: ' + g('t1'));
+    L.push('Looked first: ' + g('t2'));
+    L.push('Time to an answer: ' + g('t3'));
+    L.push('The answer lived: ' + g('t4'));
+    L.push('Afterward it went: ' + g('t5'));
+    L.push('Survives that person leaving: ' + g('t6'));
+    L.push('Scores — Capture ' + g('dCapture') + ' · Findability ' + g('dFind') + ' · Trust ' + g('dTrust') + ' · Reuse ' + g('dReuse') + ' · Ownership ' + g('dOwn'));
+    L.push('WORST LINK: ' + g('worst'));
+    L.push('');
+    L.push('3 — MY 30-DAY PLAN');
+    L.push('The one thing: ' + g('p1'));
+    L.push('Hypothesis: We believe that ' + g('h1') + ' will ' + g('h2') + ' for ' + g('h3') + '. We’ll know we’re right when ' + g('h4') + '.');
+    L.push('The pilot: ' + g('p2'));
+    L.push('Week 1: ' + g('w1'));
+    L.push('Week 2: ' + g('w2'));
+    L.push('Week 3: ' + g('w3'));
+    L.push('Week 4: ' + g('w4'));
+    L.push('The measure: ' + g('p3'));
+    L.push('The why: ' + g('p4'));
+    L.push('NOT doing: ' + g('n1') + ' / ' + g('n2') + ' / ' + g('n3'));
+    L.push('Owner: ' + g('p5'));
+    L.push('Revisit on: ' + g('p6'));
+    L.push('');
+    L.push('trxl.co');
+    return L.join('\n');
+  }
+  function flash(btn){
+    var t = btn.textContent;
+    btn.textContent = 'Copied';
+    btn.classList.add('btn-ok');
+    setTimeout(function(){ btn.textContent = t; btn.classList.remove('btn-ok'); }, 1800);
+  }
+  function doCopy(e){
+    var btn = e.currentTarget, txt = plainText();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function(){ flash(btn); }, function(){ fallback(txt, btn); });
+    } else fallback(txt, btn);
+  }
+  function fallback(txt, btn){
+    // ponytail: execCommand is deprecated but it's the only thing that works on
+    // older iOS Safari and in non-secure contexts. Two lines, keep it.
+    var ta = document.createElement('textarea');
+    ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); flash(btn); } catch(err) { window.prompt('Copy your plan:', txt); }
+    document.body.removeChild(ta);
+  }
+  document.getElementById('btnCopy').addEventListener('click', doCopy);
+  document.getElementById('btnCopy2').addEventListener('click', doCopy);
+})();
+</script>
+</body>
+</html>
