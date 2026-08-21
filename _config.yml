@@ -1,0 +1,14 @@
+# GitHub Pages / Jekyll config.
+#
+# The point of this file is the exclude list. assets.trxl.co used to serve a
+# root index.html plus manifest.json, which together published a complete list
+# of every field report slug — readable by anyone, which defeated the paid gate
+# on the Ghost "Field Reports" page. Individual report pages stay reachable by
+# direct link (that's how the newsletter sends people to them), but nothing
+# should enumerate them.
+#
+# Jekyll already skips underscore-prefixed paths, so _data/manifest.json is not
+# published; this makes that explicit rather than relying on the default.
+exclude:
+  - _data
+  - README.md
