@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Build Your Firm's AI Adoption Plan — AU 2026 Session AS1719</title>
-<meta name="description" content="Worksheets 2 and 3 for AU 2026 session AS1719: the Knowledge Flow Audit and your 30-day AI adoption plan. Your answers stay on your phone.">
+<meta name="description" content="Worksheets 2 and 3 for AU 2026 session AS1719: the Knowledge Flow Audit and your 30-day AI adoption plan. Your answers stay on your device.">
 <meta property="og:title" content="Build Your Firm's AI Adoption Plan — AU 2026">
 <meta property="og:description" content="Knowledge Flow Audit + 30-day plan. Session AS1719 with Evan Troxel and Kenton Grant.">
 <meta property="og:url" content="https://assets.trxl.co/au1719/">
@@ -196,11 +196,45 @@ input[type=number]{width:88px}
 .credit{font-size:13px; color:var(--fg-subtle); margin-top:var(--s-6); border-top:1px solid var(--divider); padding-top:var(--s-4)}
 .credit a{color:var(--accent)}
 
+/* --- Steps ---------------------------------------------------------------
+   Screen: show one worksheet at a time. Print: show all three, so a blank
+   print-out is still the full AU handout. */
+.steps{
+  display:flex; gap:var(--s-2); margin:0 0 var(--s-6); flex-wrap:wrap;
+}
+.step-btn{
+  font-family:var(--font-sans); font-size:13px; font-weight:600;
+  padding:9px 14px; border-radius:var(--r-pill); border:1px solid var(--border);
+  background:var(--white); color:var(--fg-subtle); cursor:pointer;
+  display:flex; align-items:center; gap:7px; transition:all 140ms ease;
+}
+.step-btn:hover{border-color:var(--stone); color:var(--fg)}
+.step-btn .n{
+  font-family:var(--font-mono); font-size:11px; width:18px; height:18px;
+  border-radius:50%; background:var(--mist); color:var(--fg-subtle);
+  display:inline-flex; align-items:center; justify-content:center; flex:none;
+}
+.step-btn[aria-current=true]{border-color:var(--accent); color:var(--fg); background:var(--white)}
+.step-btn[aria-current=true] .n{background:var(--accent); color:#fff}
+.step-btn.is-done .n{background:var(--ink); color:#fff}
+
+[data-step]{display:none}
+[data-step].is-active{display:block}
+
+.stepnav{
+  display:flex; justify-content:space-between; align-items:center;
+  margin-top:var(--s-6); padding-top:var(--s-5); border-top:1px solid var(--divider);
+}
+.stepnav .btn{font-size:14px; padding:10px 18px}
+.stepnav .spacer{flex:1}
+
 /* --- Print ---------------------------------------------------------------
    Doubles as the AU handout PDF: printing with every field blank produces a
    usable paper worksheet. */
 @media print{
   @page{margin:14mm 12mm}
+  [data-step]{display:block !important}
+  .steps,.stepnav{display:none !important}
   :root{--bg:#fff}
   body{background:#fff; font-size:10.5pt; line-height:1.4}
   .noprint{display:none !important}
@@ -247,12 +281,18 @@ input[type=number]{width:88px}
   <div class="hero">
     <p class="eyebrow">Autodesk University 2026 · Hands-on Workshop</p>
     <h1>Build Your Firm's AI&nbsp;Adoption Plan</h1>
-    <p>Worksheets 2 and 3. Everything you type stays on this phone &mdash; nothing is sent anywhere.
+    <p>Worksheets 2 and 3. Everything you type stays on this device &mdash; nothing is sent anywhere.
     When you're done, save it as a PDF or copy it to yourself.</p>
   </div>
 
+  <nav class="steps noprint" id="steps">
+    <button class="step-btn" type="button" data-goto="1"><span class="n">1</span> Where you are</button>
+    <button class="step-btn" type="button" data-goto="2"><span class="n">2</span> Knowledge Flow Audit</button>
+    <button class="step-btn" type="button" data-goto="3"><span class="n">3</span> 30-Day Plan</button>
+  </nav>
+
   <!-- ===== WS1 carry-forward ============================================ -->
-  <section id="ws1">
+  <section id="ws1" data-step="1" class="is-active">
     <div class="sec-head"><span class="sec-num">1</span><h2>Where you're starting from</h2></div>
     <p class="sec-sub">You just scored nine dimensions on the form. Bring the answer over here.</p>
 
@@ -281,10 +321,15 @@ input[type=number]{width:88px}
         <p class="bars-read" id="barsRead"></p>
       </div>
     </div>
+
+    <div class="stepnav noprint">
+      <span class="spacer"></span>
+      <button class="btn" type="button" data-goto="2">Continue &rarr; Knowledge Flow Audit</button>
+    </div>
   </section>
 
   <!-- ===== WS2 ========================================================== -->
-  <section id="ws2">
+  <section id="ws2" data-step="2">
     <div class="sec-head"><span class="sec-num">2</span><h2>Where you're losing time</h2></div>
     <p class="sec-sub">The Knowledge Flow Audit. Don't answer in general &mdash; trace one real thing.</p>
 
@@ -405,10 +450,16 @@ input[type=number]{width:88px}
         <button class="chip" type="button" data-v="Ownership">Ownership</button>
       </div>
     </div>
+
+    <div class="stepnav noprint">
+      <button class="btn btn-ghost" type="button" data-goto="1">&larr; Back</button>
+      <span class="spacer"></span>
+      <button class="btn" type="button" data-goto="3">Continue &rarr; 30-Day Plan</button>
+    </div>
   </section>
 
   <!-- ===== WS3 ========================================================== -->
-  <section id="ws3">
+  <section id="ws3" data-step="3">
     <div class="sec-head"><span class="sec-num">3</span><h2>What you do Monday</h2></div>
     <p class="sec-sub">Your 30-day plan. Small enough to actually happen.</p>
 
@@ -470,12 +521,17 @@ input[type=number]{width:88px}
       <label for="p6">The date you look at this again</label>
       <input type="date" id="p6" data-k="p6">
     </div>
+
+    <div class="stepnav noprint">
+      <button class="btn btn-ghost" type="button" data-goto="2">&larr; Back</button>
+      <span class="spacer"></span>
+    </div>
   </section>
 
-  <div class="done">
+  <div class="done" data-step="3">
     <h2>Take it with you</h2>
     <p>Your answers are saved in this browser &mdash; come back to this URL and they'll still be here.
-    But a plan that lives in a phone browser is a plan that dies. Get it out.</p>
+    But a plan that lives in a device browser is a plan that dies. Get it out.</p>
     <div class="actions noprint">
       <button class="btn" id="btnPrint2" type="button">Save as PDF</button>
       <button class="btn btn-ghost" id="btnCopy2" type="button">Copy my plan</button>
@@ -581,6 +637,31 @@ input[type=number]{width:88px}
   }
 
   drawBars(); sync();
+
+  // --- steps ---------------------------------------------------------------
+  var STEP_KEY = 'au1719_step';
+  var totalSteps = 3;
+  function getStep(){
+    var n = parseInt(localStorage.getItem(STEP_KEY), 10);
+    return (n >= 1 && n <= totalSteps) ? n : 1;
+  }
+  function setStep(n){
+    n = Math.max(1, Math.min(totalSteps, n));
+    try { localStorage.setItem(STEP_KEY, String(n)); } catch(e) {}
+    document.querySelectorAll('[data-step]').forEach(function(el){
+      el.classList.toggle('is-active', String(el.dataset.step) === String(n));
+    });
+    document.querySelectorAll('.step-btn').forEach(function(btn){
+      var v = parseInt(btn.dataset.goto, 10);
+      btn.setAttribute('aria-current', String(v === n));
+      btn.classList.toggle('is-done', v < n);
+    });
+    document.getElementById('steps').scrollIntoView({block:'start', behavior:'instant' in window ? 'instant' : 'auto'});
+  }
+  document.querySelectorAll('[data-goto]').forEach(function(el){
+    el.addEventListener('click', function(){ setStep(parseInt(el.dataset.goto, 10)); });
+  });
+  setStep(getStep());
 
   // --- print -------------------------------------------------------------
   // Textareas don't grow to fit their content when printed, so expand them first.
