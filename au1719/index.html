@@ -123,6 +123,7 @@ input[type=text],input[type=date],input[type=number],textarea{
 input:focus,textarea:focus{border-color:var(--accent)}
 textarea{resize:vertical; min-height:76px}
 input[type=number]{width:88px}
+input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-width:100%}
 
 /* Chips */
 .chips{display:flex; flex-wrap:wrap; gap:var(--s-2)}
@@ -370,18 +371,8 @@ input[type=number]{width:88px}
     </div>
 
     <div class="q">
-      <span class="q-label q-req">Which pillar came out lowest?</span>
-      <div class="pillars chips" data-k="pillar" data-req>
-        <button class="pillar chip" type="button" data-v="Capability">Capability<span>Tools · Data · AI literacy</span></button>
-        <button class="pillar chip" type="button" data-v="Alignment">Alignment<span>Leadership · Culture · Governance</span></button>
-        <button class="pillar chip" type="button" data-v="Accountability">Accountability<span>Metrics · Feedback loops · Impact</span></button>
-      </div>
-      <p class="req-warn">Pick one to continue &mdash; the rest of this depends on it.</p>
-    </div>
-
-    <div class="q">
-      <span class="q-label">Optional: see the shape
-        <span class="q-hint">Add up each section of the form and enter the three subtotals. The total out of 45 tells you almost nothing &mdash; the shape is the diagnostic. Leave a pillar blank if you answered &ldquo;not sure&rdquo; too often to score it.</span>
+      <span class="q-label">Score the three pillars
+        <span class="q-hint">Add up each section of the form and enter the three subtotals. The total out of 45 tells you almost nothing &mdash; the shape is the diagnostic. Your lowest pillar is picked automatically below as you type.</span>
       </span>
       <div class="subtotals">
         <div class="subtotal"><label for="stC">Capability /15</label><input type="number" id="stC" min="3" max="15" inputmode="numeric" data-k="stC" data-bar="Capability"></div>
@@ -394,6 +385,18 @@ input[type=number]{width:88px}
         <div class="bar-row is-blank" data-bar-row="Accountability"><span class="bar-name">Accountability</span><span class="bar-track"><span class="bar-fill" style="width:0"></span></span><span class="bar-val">&ndash;</span></div>
         <p class="bars-read" id="barsRead"></p>
       </div>
+    </div>
+
+    <div class="q">
+      <span class="q-label q-req">Lowest pillar
+        <span class="q-hint">Chosen automatically once you enter numbers above. Didn&rsquo;t score it? Pick it yourself.</span>
+      </span>
+      <div class="pillars chips" data-k="pillar" data-req>
+        <button class="pillar chip" type="button" data-v="Capability">Capability<span>Tools · Data · AI literacy</span></button>
+        <button class="pillar chip" type="button" data-v="Alignment">Alignment<span>Leadership · Culture · Governance</span></button>
+        <button class="pillar chip" type="button" data-v="Accountability">Accountability<span>Metrics · Feedback loops · Impact</span></button>
+      </div>
+      <p class="req-warn">Pick one to continue &mdash; the rest of this depends on it.</p>
     </div>
 
     <div class="stepnav noprint">
@@ -415,12 +418,14 @@ input[type=number]{width:88px}
         <button class="chip" type="button" data-v="Urgency">Urgency</button>
         <button class="chip" type="button" data-v="Ability to be strategic">Ability to be strategic</button>
         <button class="chip" type="button" data-v="Money">Money</button>
+        <button class="chip" type="button" data-v="Consistency">Consistency</button>
+        <button class="chip" type="button" data-v="Talent">Talent</button>
       </div>
       <p class="req-warn">Pick one &mdash; whatever's true right now.</p>
     </div>
 
     <div class="q">
-      <span class="q-label q-req">Before you do anything else &mdash; gut check. What do you think your worst link is?</span>
+      <span class="q-label q-req">Before you do anything else &mdash; gut check. What do you think your worst link in the knowledge flow chain is?</span>
       <span class="q-hint" style="display:block; margin-bottom:10px">No thinking, just pick. You'll revisit this after the audit.</span>
       <div class="links" data-k="gut" data-req>
         <button class="link-chip" type="button" data-v="Capture">Capture<span>Was it ever written down?</span></button>
@@ -453,6 +458,8 @@ input[type=number]{width:88px}
           <button class="chip" type="button" data-v="Dug through a project folder">Dug through a project folder</button>
           <button class="chip" type="button" data-v="Searched a system">Searched a system</button>
           <button class="chip" type="button" data-v="Slack / Teams">Slack / Teams</button>
+          <button class="chip" type="button" data-v="Firm intranet">Firm intranet</button>
+          <button class="chip" type="button" data-v="Internet search / YouTube">Internet search / YouTube</button>
           <button class="chip" type="button" data-v="Didn't look — just redid the work">Didn't look &mdash; just redid the work</button>
         </div>
       </div>
@@ -472,6 +479,7 @@ input[type=number]{width:88px}
           <button class="chip" type="button" data-v="A project folder">A project folder</button>
           <button class="chip" type="button" data-v="A shared library">A shared library</button>
           <button class="chip" type="button" data-v="A real system of record">A real system of record</button>
+          <button class="chip" type="button" data-v="An outside source">An outside source (internet, vendor, colleague elsewhere)</button>
           <button class="chip" type="button" data-v="Nowhere — it was recreated">Nowhere &mdash; it was recreated</button>
         </div>
       </div>
@@ -529,7 +537,7 @@ input[type=number]{width:88px}
       This one is strategic. McKinsey's test for when data becomes an advantage is four-part: captured
       as the work happens, structured for reuse, traceable to origin, <em>and held with the rights to
       keep learning from it.</em> That fourth clause is the one most firms already answered years ago,
-      in software contracts nobody re-read. It applies to every vendor in this room.</p>
+      in a software contract nobody re-read.</p>
     </div>
 
     <div class="subhead"><span class="letter">C</span><h3>The worst link</h3></div>
@@ -552,7 +560,7 @@ input[type=number]{width:88px}
       <label for="surprised">Are you surprised?
         <span class="q-hint">There's nothing bad or wrong if it changed &mdash; it might just mean a preconceived notion, a bias, or a blind spot.</span>
       </label>
-      <textarea id="surprised" data-k="surprised"></textarea>
+      <textarea id="surprised" data-k="surprised" placeholder="e.g. I guessed Capture, but it's actually Trust — we write things down, nobody acts on them."></textarea>
     </div>
 
     <div class="note">
@@ -589,7 +597,7 @@ input[type=number]{width:88px}
     </div>
 
     <div class="q">
-      <span class="q-label q-req">The hypothesis.<span class="q-hint">A testable claim, not a goal.</span></span>
+      <span class="q-label"><span class="q-req">The hypothesis.</span><span class="q-hint">A testable claim, not a goal.</span></span>
       <div class="stem" data-req-group="hyp">
         <div class="stem-line"><span>We believe that</span><input type="text" data-k="h1" data-req placeholder="doing this thing"></div>
         <div class="stem-line"><span>will</span><input type="text" data-k="h2" data-req placeholder="produce this change"></div>
@@ -680,7 +688,7 @@ input[type=number]{width:88px}
     </p>
     <p class="credit">
       <span class="row">Session AS1719 &middot; Autodesk University 2026</span>
-      <span class="row">Evan Troxel &middot; <a href="https://trxl.co">trxl.co</a></span>
+      <span class="row">Evan Troxel &middot; <a href="https://trxl.co">trxl.co</a> &middot; <a href="mailto:evan@evantroxel.com">evan@evantroxel.com</a></span>
       <span class="row">Kenton Grant &middot; <a href="https://www.kentonworks.com/">kentonworks.com</a> &middot; <a href="mailto:hello@kentonworks.com">hello@kentonworks.com</a></span>
     </p>
   </div>
@@ -750,6 +758,11 @@ input[type=number]{width:88px}
     var n = parseInt(el && el.value, 10);
     return (isNaN(n) || n < 3 || n > 15) ? null : n;
   }
+  function paintPillar(){
+    document.querySelectorAll('.pillars .chip').forEach(function(c){
+      c.setAttribute('aria-pressed', String(c.dataset.v === state.pillar));
+    });
+  }
   function drawBars(){
     var vals = {}, any = false, lowest = null;
     BARS.forEach(function(b){
@@ -766,6 +779,11 @@ input[type=number]{width:88px}
     });
     var read = document.getElementById('barsRead');
     if (!any) { read.textContent = ''; return; }
+    // All three scored: the lowest pillar picks itself. No need to make anyone tap a chip.
+    if (BARS.every(function(b){ return vals[b] !== null; })) {
+      state.pillar = lowest; save(); clearInvalid(document.querySelector('[data-k="pillar"]'));
+    }
+    paintPillar();
     var blanks = BARS.filter(function(b){ return vals[b] === null; });
     read.textContent = 'Your lowest bar is ' + lowest + '. That’s where the next 30 days go.'
       + (blanks.length ? ' (' + blanks.join(' and ') + ': not enough signal to score.)' : '');
@@ -809,7 +827,7 @@ input[type=number]{width:88px}
 
   function syncAll(){ sync(); syncCompare(); buildPrompt(); }
 
-  drawBars(); syncAll();
+  drawBars(); paintPillar(); syncAll();
 
   // --- required-field flagging --------------------------------------------
   function clearInvalid(el){ if (el) el.classList.remove('is-invalid'); }
@@ -891,27 +909,46 @@ input[type=number]{width:88px}
   function buildPrompt(){
     var g = function(k){ return (state[k] || '').trim() || '(not answered)'; };
     var lines = [];
-    lines.push('I’m building a 30-day AI adoption plan for my architecture/AEC firm. Here’s my diagnostic from a workshop exercise:');
+    lines.push('I\'m an architecture/engineering/construction (AEC) practitioner — not a vendor. I just ran a knowledge-flow diagnostic on my own firm at an Autodesk University workshop. I don\'t want generic AI-adoption advice; I want this grounded in the specifics below.');
     lines.push('');
-    lines.push('- Where I’m losing the most right now: ' + g('losing'));
-    lines.push('- My firm’s lowest Digital Practice OS pillar: ' + g('pillar'));
-    lines.push('- My gut-check worst link (before the audit): ' + g('gut'));
-    lines.push('- My worst link after tracing a real example: ' + g('worst'));
+    lines.push('WHERE I\'M STARTING FROM');
+    lines.push('- My firm\'s lowest Digital Practice OS pillar: ' + g('pillar'));
+    lines.push('- Where I\'m losing the most right now: ' + g('losing'));
+    lines.push('');
+    lines.push('THE REAL EXAMPLE I TRACED');
+    lines.push('- The question: ' + g('q0'));
+    lines.push('- Who needed the answer: ' + g('t1'));
+    lines.push('- Where they looked first: ' + g('t2'));
+    lines.push('- Time to get an answer: ' + g('t3'));
+    lines.push('- Where the answer actually lived: ' + g('t4'));
+    lines.push('- Where the answer went afterward: ' + g('t5'));
+    lines.push('- Would it survive that person leaving the firm: ' + g('t6'));
+    lines.push('- Chain scores, 1 (broken) to 5 (solid) — Capture ' + g('dCapture') + ', Findability ' + g('dFind') + ', Trust ' + g('dTrust') + ', Reuse ' + g('dReuse') + ', Ownership ' + g('dOwn'));
+    lines.push('');
+    lines.push('MY WORST LINK');
+    lines.push('- Gut check, before tracing anything: ' + g('gut'));
+    lines.push('- After tracing the real example above: ' + g('worst'));
     if (state.gut && state.worst && state.gut !== state.worst) {
-      lines.push('  (These differ — that shift itself may be worth noting.)');
+      lines.push('  (These differ — that shift itself is worth noting.)');
     }
-    lines.push('- Why that pillar is my struggle, scoped to my own purview: ' + g('whyPillar'));
-    lines.push('- What that worst link means for me, and what I could focus on: ' + g('whyLink'));
-    lines.push('- My hypothesis: We believe that ' + g('h1') + ' will ' + g('h2') + ' for ' + g('h3') + '. We’ll know we’re right when ' + g('h4') + '.');
+    lines.push('- Was I surprised: ' + g('surprised'));
+    lines.push('');
+    lines.push('MY HYPOTHESIS');
+    lines.push('- Why ' + g('pillar') + ' is my struggle, scoped to what\'s in my purview: ' + g('whyPillar'));
+    lines.push('- What ' + g('worst') + ' means for me, and what I could focus on: ' + g('whyLink'));
+    lines.push('- We believe that ' + g('h1') + ' will ' + g('h2') + ' for ' + g('h3') + '. We\'ll know we\'re right when ' + g('h4') + '.');
+    lines.push('');
     var notDoing = [state.n1, state.n2, state.n3].filter(Boolean);
-    lines.push('- What I am deliberately NOT doing right now: ' + (notDoing.length ? notDoing.join('; ') : '(not answered)'));
+    lines.push('WHAT I AM DELIBERATELY NOT DOING RIGHT NOW: ' + (notDoing.length ? notDoing.join('; ') : '(not answered)'));
     lines.push('');
-    lines.push('Based on this, give me:');
-    lines.push('1. One specific pilot — one team, one workflow, small enough to run in 30 days — that directly addresses my worst link and my lowest pillar.');
-    lines.push('2. A checklist sized to me, not a generic template. If I only need 5 steps, give me 5. If I need 12, give me 12.');
-    lines.push('3. Respect what I said I’m deliberately not doing — don’t recommend it, even if it seems related.');
+    lines.push('Based on all of this, give me:');
+    lines.push('1. ONE PILOT, named in a single sentence — one team, one workflow, small enough to start Monday and finish in 30 days — that directly attacks my worst link (' + g('worst') + ') and my lowest pillar (' + g('pillar') + ').');
+    lines.push('2. WHY THIS PILOT — two or three sentences tying it back to the traced example above, not a generic AI-adoption argument.');
+    lines.push('3. A CHECKLIST SIZED TO ME, not a template. If I only need 5 steps, give me 5. If I need 12, give me 12. Number each one and make it something I could literally do that week.');
+    lines.push('4. HOW I\'LL KNOW IT WORKED — tie back to my hypothesis\'s success condition, not a vague metric.');
+    lines.push('5. Respect what I said I\'m deliberately NOT doing — don\'t recommend it, even if it seems related.');
     lines.push('');
-    lines.push('Keep it concrete and actionable for someone starting Monday morning.');
+    lines.push('Keep it concrete, specific to AEC practice, and actionable for someone starting Monday morning — skip the "start small and iterate" filler. I may run this same prompt with a colleague\'s answers and compare pilots, so make your reasoning visible, not just the output.');
     var text = lines.join('\n');
     var box = document.getElementById('promptText');
     if (box) box.value = text;
