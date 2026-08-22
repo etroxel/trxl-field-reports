@@ -650,6 +650,13 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     </div>
 
     <div class="q">
+      <label for="extra">Anything else the AI should know about you or your firm?
+        <span class="q-hint">Optional. Anything that would change what a good pilot looks like &mdash; your role, team/firm size, current tools, budget, who resists change, deadlines, whatever's true.</span>
+      </label>
+      <textarea id="extra" data-k="extra" placeholder="e.g. I'm the BIM manager at a 14-person firm, all in Revit + Bluebeam, no dedicated IT. No extra budget until next fiscal year. Biggest resistance comes from senior PMs, not the field staff."></textarea>
+    </div>
+
+    <div class="q">
       <span class="q-label">What you are deliberately NOT doing.<span class="q-hint">Three lines. This is the box that makes &ldquo;pick one thing&rdquo; real instead of aspirational.</span></span>
       <div class="weeks">
         <div class="week"><span class="week-n">Not this</span><input type="text" data-k="n1"></div>
@@ -953,12 +960,13 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     if (v('whyLink')) lines.push('- What ' + g('worst') + ' means for me, and what I could focus on: ' + v('whyLink'));
     lines.push('- We believe that ' + g('h1') + ' will ' + g('h2') + ' for ' + g('h3') + '. We\'ll know we\'re right when ' + g('h4') + '.');
     lines.push('');
+    if (v('extra')) { lines.push('ADDITIONAL CONTEXT ABOUT ME AND MY FIRM: ' + v('extra')); lines.push(''); }
     var notDoing = [state.n1, state.n2, state.n3].filter(Boolean);
     if (notDoing.length) { lines.push('WHAT I AM DELIBERATELY NOT DOING RIGHT NOW: ' + notDoing.join('; ')); lines.push(''); }
     lines.push('Based on all of this, give me a short report with these sections:');
     lines.push('1. WHERE I AM RIGHT NOW — a short "who you are" snapshot in plain language: my lowest pillar, where I\'m losing the most, and my worst link, stated back to me so I know you understood my situation before you prescribe anything.');
     lines.push('2. WHAT TO FOCUS ON — one sentence reinforcing the single thing this pilot is meant to fix. This is the headline; everything below should serve it.');
-    lines.push('3. ONE PILOT, named in a single sentence — one team, one workflow, small enough to start Monday and finish in 30 days — that directly attacks my worst link (' + g('worst') + ') and my lowest pillar (' + g('pillar') + ').');
+    lines.push('3. ONE PILOT, named in a single sentence — one team, one workflow, small enough to start Monday and finish in 30 days — that directly attacks my worst link (' + g('worst') + ') and my lowest pillar (' + g('pillar') + '), realistic given my role and my firm\'s size, tools, and constraints if I described them above.');
     lines.push('4. WHY THIS PILOT — two or three sentences tying it back to the traced example above, not a generic AI-adoption argument.');
     lines.push('5. A CHECKLIST SIZED TO ME, not a template. If I only need 5 steps, give me 5. If I need 12, give me 12. Number each one and make it something I could literally do that week.');
     lines.push('6. HOW I\'LL KNOW IT WORKED — tie back to my hypothesis\'s success condition, not a vague metric.');
@@ -1025,6 +1033,7 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     L.push('');
     L.push('4 — BEFORE YOU GO');
     L.push('Did hypothesis change? ' + g('hypChanged') + ' — ' + g('hypChangedWhat'));
+    L.push('Additional context: ' + g('extra'));
     L.push('NOT doing: ' + g('n1') + ' / ' + g('n2') + ' / ' + g('n3'));
     L.push('');
     L.push('AI PROMPT');
