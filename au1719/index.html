@@ -93,6 +93,8 @@ section{margin:0 0 var(--s-7); scroll-margin-top:72px}
 }
 .note strong{color:var(--fg)}
 .note p{margin:0 0 var(--s-2)} .note p:last-child{margin:0}
+.note ul{margin:0; padding-left:1.2em} .note li{margin-bottom:var(--s-2)} .note li:last-child{margin-bottom:0}
+.note a{color:var(--accent)}
 
 /* Sub-sections within a step (Exercise 2's three-part structure) */
 .subhead{
@@ -402,6 +404,18 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
       <p class="req-warn">Pick one to continue &mdash; the rest of this depends on it.</p>
     </div>
 
+    <div class="q">
+      <span class="q-label">Took the AIA AI Firm Toolkit assessment?
+        <span class="q-hint">Optional. Five questions, about two minutes, at <a href="https://aifirmtoolkit.aia.org/#assessment" target="_blank" rel="noopener">aifirmtoolkit.aia.org</a> &mdash; bring your level over if you have it. It grades a different thing than we do here (governance maturity, not knowledge flow), so it's worth having both.</span>
+      </span>
+      <div class="chips" data-k="aiaLevel">
+        <button class="chip" type="button" data-v="1 · Ad hoc experiments">1 &middot; Ad hoc experiments</button>
+        <button class="chip" type="button" data-v="2 · Emerging practice">2 &middot; Emerging practice</button>
+        <button class="chip" type="button" data-v="3 · Integrated practice">3 &middot; Integrated practice</button>
+        <button class="chip" type="button" data-v="4 · AI-first firm">4 &middot; AI-first firm</button>
+      </div>
+    </div>
+
     <div class="stepnav noprint">
       <span class="spacer"></span>
       <button class="btn" type="button" data-goto="2">Continue &rarr; Knowledge Flow Audit</button>
@@ -678,6 +692,8 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
       </div>
     </div>
 
+    <div class="note" id="aiaNext" hidden></div>
+
     <div class="stepnav noprint">
       <button class="btn btn-ghost" type="button" data-goto="3">&larr; Back</button>
       <span class="spacer"></span>
@@ -720,6 +736,46 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     Reuse: 'Does it change the next project?',
     Ownership: 'Could you take it and leave?'
   };
+
+  // --- AIA Toolkit routing --------------------------------------------------
+  // AIA's toolkit measures governance maturity and has no knowledge-flow
+  // diagnostic at all — these tables point each attendee's specific worst
+  // link / lowest pillar at the AIA module that actually matches it.
+  // Declared here (before first use in syncAll(), called below) rather than
+  // near buildPrompt() — var assignments run top-to-bottom, not on hoist.
+  var AIA_BASE = 'https://aifirmtoolkit.aia.org/';
+  var AIA_BY_LINK = {
+    Capture: { hash: '#change', label: 'Change Management → Data Governance (files vs. data, ROT reduction)' },
+    Findability: { hash: '#change', label: 'Change Management → Data Governance (classification scheme, data literacy)' },
+    Trust: { hash: '#change', label: 'Change Management → Workflow Patterns + the task-specific verification checklists' },
+    Reuse: { hash: '#change', label: 'Change Management → Operations & Governance (systematic knowledge capture, learning sessions)' },
+    Ownership: { hash: '#policy', label: 'Policy, Ethics, Contracts & Legislation → Contract Language Guidance' }
+  };
+  var AIA_BY_PILLAR = {
+    Capability: { hash: '#literacy', label: 'General AI Literacy (13 core terms) + Change Management → Workflow Patterns' },
+    Alignment: { hash: '#policy', label: 'Policy → Internal Policy Framework + Change Management → Culture Transformation' },
+    Accountability: { hash: '#change', label: 'Change Management → Operations & Governance (ROI measurement, verification gates, governance ownership matrix)' }
+  };
+  function aiaNeedsAssessment(){ return !state.aiaLevel; }
+  function aiaNeedsPolicyTemplate(){ return !state.aiaLevel || state.aiaLevel.charAt(0) === '1' || state.aiaLevel.charAt(0) === '2'; }
+
+  function syncAiaNext(){
+    var box = document.getElementById('aiaNext');
+    if (!box) return;
+    var byLink = AIA_BY_LINK[state.worst];
+    var byPillar = AIA_BY_PILLAR[state.pillar];
+    if (!byLink && !byPillar) { box.hidden = true; return; }
+    box.hidden = false;
+    var html = '<p><strong>Where to go next.</strong> The AIA\'s AI Firm Toolkit measures a '
+      + 'different thing than we did today — governance maturity, not knowledge flow. Once this '
+      + 'pilot is running, it\'s the right next stop:</p><ul>';
+    if (byLink) html += '<li>Your worst link (<strong>' + state.worst + '</strong>) → <a href="' + AIA_BASE + byLink.hash + '" target="_blank" rel="noopener">' + byLink.label + '</a></li>';
+    if (byPillar) html += '<li>Your lowest pillar (<strong>' + state.pillar + '</strong>) → <a href="' + AIA_BASE + byPillar.hash + '" target="_blank" rel="noopener">' + byPillar.label + '</a></li>';
+    if (aiaNeedsPolicyTemplate()) html += '<li>Need a written AI policy? AIA has downloadable sample policies (short ~2pg, detailed ~6pg) under Policy, Ethics, Contracts & Legislation → <a href="' + AIA_BASE + '#policy" target="_blank" rel="noopener">' + AIA_BASE + '#policy</a></li>';
+    if (aiaNeedsAssessment()) html += '<li>Haven\'t taken their 5-question maturity assessment? <a href="' + AIA_BASE + '#assessment" target="_blank" rel="noopener">' + AIA_BASE + '#assessment</a> (~2 min) — it grades a different axis than anything you did here.</li>';
+    html += '</ul>';
+    box.innerHTML = html;
+  }
 
   function save(){
     // ponytail: whole-state rewrite on every keystroke. It's a few KB — a diff
@@ -837,7 +893,7 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     box.innerHTML = html;
   }
 
-  function syncAll(){ sync(); syncCompare(); buildPrompt(); }
+  function syncAll(){ sync(); syncCompare(); syncAiaNext(); buildPrompt(); }
 
   drawBars(); paintPillar(); syncAll();
 
@@ -930,6 +986,7 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     lines.push('WHERE I\'M STARTING FROM');
     lines.push('- My firm\'s lowest Digital Practice OS pillar: ' + g('pillar'));
     lines.push('- Where I\'m losing the most right now: ' + g('losing'));
+    if (v('aiaLevel')) lines.push('- My AIA AI Firm Toolkit maturity level (separate governance-maturity assessment): ' + v('aiaLevel'));
     lines.push('');
     if (v('q0')) {
       lines.push('THE REAL EXAMPLE I TRACED');
@@ -959,6 +1016,10 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     if (v('whyPillar')) lines.push('- Why ' + g('pillar') + ' is my struggle, scoped to what\'s in my purview: ' + v('whyPillar'));
     if (v('whyLink')) lines.push('- What ' + g('worst') + ' means for me, and what I could focus on: ' + v('whyLink'));
     lines.push('- We believe that ' + g('h1') + ' will ' + g('h2') + ' for ' + g('h3') + '. We\'ll know we\'re right when ' + g('h4') + '.');
+    if (v('hypChanged') || v('hypChangedWhat')) {
+      lines.push('- After stress-testing this with peers in the room, did my hypothesis change: '
+        + (v('hypChanged') || 'unstated') + (v('hypChangedWhat') ? ' — ' + v('hypChangedWhat') : ''));
+    }
     lines.push('');
     if (v('extra')) { lines.push('ADDITIONAL CONTEXT ABOUT ME AND MY FIRM: ' + v('extra')); lines.push(''); }
     var notDoing = [state.n1, state.n2, state.n3].filter(Boolean);
@@ -970,9 +1031,17 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     lines.push('4. WHY THIS PILOT — two or three sentences tying it back to the traced example above, not a generic AI-adoption argument.');
     lines.push('5. A CHECKLIST SIZED TO ME, not a template. If I only need 5 steps, give me 5. If I need 12, give me 12. Number each one and make it something I could literally do that week.');
     lines.push('6. HOW I\'LL KNOW IT WORKED — tie back to my hypothesis\'s success condition, not a vague metric.');
-    lines.push('7. WHAT FINISHING THIS SETS ME UP TO DO — explain how completing this checklist and running this pilot gives me what I need to write my firm\'s actual 30-day AI adoption plan and confidently run my first real pilot beyond this one exercise.');
-    lines.push('8. NEXT STEP — point me to the AIA\'s AI Firm Toolkit (https://aifirmtoolkit.aia.org/) as where to go after this pilot to build out the fuller adoption plan and policy.');
-    lines.push('9. Respect what I said I\'m deliberately NOT doing — don\'t recommend it, even if it seems related.');
+    lines.push('7. RISK AND VERIFICATION — I\'m in a licensed profession; assume liability matters. State this pilot\'s risk tier (low / medium / high stakes) and exactly what a human must verify before any AI output leaves the office.');
+    lines.push('8. WHICH PATTERN THIS IS — say whether this pilot is AI-assisted generation with human curation, AI-enabled analysis with human interpretation, or AI-drafted content with human verification. If it\'s closer to autonomous/unsupervised AI, say so and flag it as higher-caution.');
+    lines.push('9. WHAT FINISHING THIS SETS ME UP TO DO — explain how completing this checklist and running this pilot gives me what I need to write my firm\'s actual 30-day AI adoption plan and confidently run my first real pilot beyond this one exercise.');
+    var link = AIA_BY_LINK[state.worst], pillarRoute = AIA_BY_PILLAR[state.pillar];
+    var routeBits = [];
+    if (link) routeBits.push(AIA_BASE + link.hash + ' (' + link.label + ')');
+    if (pillarRoute) routeBits.push(AIA_BASE + pillarRoute.hash + ' (' + pillarRoute.label + ')');
+    lines.push('10. NEXT STEP — once this pilot is running, not instead of it: point me to '
+      + (routeBits.length ? routeBits.join(' and ') : 'the AIA\'s AI Firm Toolkit (' + AIA_BASE + ')')
+      + ' to build out the fuller adoption plan and policy.');
+    lines.push('11. Respect what I said I\'m deliberately NOT doing — don\'t recommend it, even if it seems related.');
     lines.push('');
     lines.push('Keep it concrete, specific to AEC practice, and actionable for someone starting Monday morning — skip the "start small and iterate" filler. I may run this same prompt with a colleague\'s answers and compare pilots, so make your reasoning visible, not just the output.');
     var text = lines.join('\n');
@@ -1009,6 +1078,7 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     L.push('Lowest pillar: ' + g('pillar'));
     if (state.stC || state.stA || state.stX)
       L.push('Subtotals: Capability ' + g('stC') + '/15 · Alignment ' + g('stA') + '/15 · Accountability ' + g('stX') + '/15');
+    if (state.aiaLevel) L.push('AIA AI Firm Toolkit level: ' + g('aiaLevel'));
     L.push('');
     L.push('2 — KNOWLEDGE FLOW AUDIT');
     L.push('Losing: ' + g('losing'));
@@ -1036,6 +1106,12 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     L.push('Additional context: ' + g('extra'));
     L.push('NOT doing: ' + g('n1') + ' / ' + g('n2') + ' / ' + g('n3'));
     L.push('');
+    var aiaNextBox = document.getElementById('aiaNext');
+    if (aiaNextBox && !aiaNextBox.hidden) {
+      L.push('WHERE TO GO NEXT (AIA AI Firm Toolkit)');
+      L.push(aiaNextBox.innerText.replace(/^Where to go next\.\s*/, ''));
+      L.push('');
+    }
     L.push('AI PROMPT');
     L.push(buildPrompt());
     L.push('');
