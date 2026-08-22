@@ -912,7 +912,11 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
 
   // --- prompt generator ----------------------------------------------------
   function buildPrompt(){
-    var g = function(k){ return (state[k] || '').trim() || '(not answered)'; };
+    // ponytail: skipped fields are omitted, not printed as "(not answered)" —
+    // the soft-gate lets people through on required fields alone, and a prompt
+    // padded with a dozen placeholder lines is worse than a short, clean one.
+    var v = function(k){ return (state[k] || '').trim(); };
+    var g = function(k){ return v(k) || '(not answered)'; };
     var lines = [];
     lines.push('I\'m an architecture/engineering/construction (AEC) practitioner — not a vendor. I just ran a knowledge-flow diagnostic on my own firm at an Autodesk University workshop. I don\'t want generic AI-adoption advice; I want this grounded in the specifics below.');
     lines.push('');
@@ -920,32 +924,37 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     lines.push('- My firm\'s lowest Digital Practice OS pillar: ' + g('pillar'));
     lines.push('- Where I\'m losing the most right now: ' + g('losing'));
     lines.push('');
-    lines.push('THE REAL EXAMPLE I TRACED');
-    lines.push('- The question: ' + g('q0'));
-    lines.push('- Who needed the answer: ' + g('t1'));
-    lines.push('- Where they looked first: ' + g('t2'));
-    lines.push('- Time to get an answer: ' + g('t3'));
-    lines.push('- Where the answer actually lived: ' + g('t4'));
-    lines.push('- Where the answer went afterward: ' + g('t5'));
-    lines.push('- Would it survive that person leaving the firm: ' + g('t6'));
-    lines.push('- Chain scores, 1 (broken) to 5 (solid) — Capture ' + g('dCapture') + ', Findability ' + g('dFind') + ', Trust ' + g('dTrust') + ', Reuse ' + g('dReuse') + ', Ownership ' + g('dOwn'));
-    lines.push('');
+    if (v('q0')) {
+      lines.push('THE REAL EXAMPLE I TRACED');
+      lines.push('- The question: ' + v('q0'));
+      if (v('t1')) lines.push('- Who needed the answer: ' + v('t1'));
+      if (v('t2')) lines.push('- Where they looked first: ' + v('t2'));
+      if (v('t3')) lines.push('- Time to get an answer: ' + v('t3'));
+      if (v('t4')) lines.push('- Where the answer actually lived: ' + v('t4'));
+      if (v('t5')) lines.push('- Where the answer went afterward: ' + v('t5'));
+      if (v('t6')) lines.push('- Would it survive that person leaving the firm: ' + v('t6'));
+      var scores = ['dCapture','dFind','dTrust','dReuse','dOwn'].map(function(k, i){
+        var name = ['Capture','Findability','Trust','Reuse','Ownership'][i];
+        return v(k) ? (name + ' ' + v(k)) : null;
+      }).filter(Boolean);
+      if (scores.length) lines.push('- Chain scores, 1 (broken) to 5 (solid) — ' + scores.join(', '));
+      lines.push('');
+    }
     lines.push('MY WORST LINK');
     lines.push('- Gut check, before tracing anything: ' + g('gut'));
     lines.push('- After tracing the real example above: ' + g('worst'));
     if (state.gut && state.worst && state.gut !== state.worst) {
       lines.push('  (These differ — that shift itself is worth noting.)');
     }
-    lines.push('- Was I surprised: ' + g('surprised'));
+    if (v('surprised')) lines.push('- Was I surprised: ' + v('surprised'));
     lines.push('');
     lines.push('MY HYPOTHESIS');
-    lines.push('- Why ' + g('pillar') + ' is my struggle, scoped to what\'s in my purview: ' + g('whyPillar'));
-    lines.push('- What ' + g('worst') + ' means for me, and what I could focus on: ' + g('whyLink'));
+    if (v('whyPillar')) lines.push('- Why ' + g('pillar') + ' is my struggle, scoped to what\'s in my purview: ' + v('whyPillar'));
+    if (v('whyLink')) lines.push('- What ' + g('worst') + ' means for me, and what I could focus on: ' + v('whyLink'));
     lines.push('- We believe that ' + g('h1') + ' will ' + g('h2') + ' for ' + g('h3') + '. We\'ll know we\'re right when ' + g('h4') + '.');
     lines.push('');
     var notDoing = [state.n1, state.n2, state.n3].filter(Boolean);
-    lines.push('WHAT I AM DELIBERATELY NOT DOING RIGHT NOW: ' + (notDoing.length ? notDoing.join('; ') : '(not answered)'));
-    lines.push('');
+    if (notDoing.length) { lines.push('WHAT I AM DELIBERATELY NOT DOING RIGHT NOW: ' + notDoing.join('; ')); lines.push(''); }
     lines.push('Based on all of this, give me a short report with these sections:');
     lines.push('1. WHERE I AM RIGHT NOW — a short "who you are" snapshot in plain language: my lowest pillar, where I\'m losing the most, and my worst link, stated back to me so I know you understood my situation before you prescribe anything.');
     lines.push('2. WHAT TO FOCUS ON — one sentence reinforcing the single thing this pilot is meant to fix. This is the headline; everything below should serve it.');
