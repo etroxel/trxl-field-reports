@@ -180,7 +180,7 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
 .bar-row{display:grid; grid-template-columns:96px 1fr 46px; gap:var(--s-3); align-items:center; margin-bottom:var(--s-2)}
 .bar-name{font-size:13px; font-weight:600}
 .bar-track{height:16px; background:var(--mist); border-radius:var(--r-2); overflow:hidden}
-.bar-fill{height:100%; background:var(--grad-trxl); border-radius:var(--r-2); transition:width 260ms cubic-bezier(.22,1,.36,1)}
+.bar-fill{display:block; height:100%; width:0; background:var(--trxl-plum); border-radius:var(--r-2); transition:width 260ms cubic-bezier(.22,1,.36,1)}
 .bar-val{font-family:var(--font-mono); font-size:12.5px; color:var(--fg-subtle); text-align:right}
 .bar-row.is-low .bar-name{color:var(--accent)}
 .bar-row.is-blank .bar-track{background:repeating-linear-gradient(45deg,var(--mist),var(--mist) 4px,var(--white) 4px,var(--white) 8px)}
@@ -391,7 +391,7 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     </div>
 
     <div class="q">
-      <span class="q-label q-req">Lowest pillar
+      <span class="q-label"><span class="q-req">Lowest pillar</span>
         <span class="q-hint">Chosen automatically once you enter numbers above. Didn&rsquo;t score it? Pick it yourself.</span>
       </span>
       <div class="pillars chips" data-k="pillar" data-req>
@@ -778,7 +778,8 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
       var v = vals[b];
       row.classList.toggle('is-blank', v === null);
       row.classList.toggle('is-low', any && b === lowest);
-      row.querySelector('.bar-fill').style.width = v === null ? '0' : Math.round(v / 15 * 100) + '%';
+      // Scored range is 3–15, not 0–15 — scale the fill to that so a 3 reads as empty and 15 as full.
+      row.querySelector('.bar-fill').style.width = v === null ? '0' : Math.round((v - 3) / 12 * 100) + '%';
       row.querySelector('.bar-val').innerHTML = v === null ? '&ndash;' : v + '/15';
     });
     var read = document.getElementById('barsRead');
