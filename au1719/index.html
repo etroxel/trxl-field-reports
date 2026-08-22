@@ -338,6 +338,7 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
   <span class="bar-id">AS1719 · AU 2026</span>
   <span class="bar-pillar" id="barPillar" hidden></span>
   <span class="bar-spacer"></span>
+  <button class="btn btn-ghost" id="btnReset" type="button">Reset</button>
   <button class="btn btn-ghost" id="btnCopy" type="button">Copy my plan</button>
   <button class="btn" id="btnPrint" type="button">Save as PDF</button>
 </header>
@@ -1035,6 +1036,11 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     try { document.execCommand('copy'); flash(btn); } catch(err) { window.prompt('Copy this:', txt); }
     document.body.removeChild(ta);
   }
+  document.getElementById('btnReset').addEventListener('click', function(){
+    if (!window.confirm('Clear everything you\'ve typed and start over? This can\'t be undone.')) return;
+    try { localStorage.removeItem(KEY); localStorage.removeItem(STEP_KEY); } catch(e) {}
+    location.reload();
+  });
   document.getElementById('btnCopy').addEventListener('click', function(e){ copyText(plainText(), e.currentTarget); });
   document.getElementById('btnCopy2').addEventListener('click', function(e){ copyText(plainText(), e.currentTarget); });
   document.getElementById('btnCopyPrompt').addEventListener('click', function(e){ copyText(buildPrompt(), e.currentTarget); });
