@@ -775,6 +775,7 @@ input[type=date]{-webkit-appearance:none; appearance:none; min-width:0; max-widt
     if (byPillar) html += '<li>Your lowest pillar (<strong>' + state.pillar + '</strong>) → <a href="' + AIA_BASE + byPillar.hash + '" target="_blank" rel="noopener">' + byPillar.label + '</a></li>';
     if (aiaNeedsPolicyTemplate()) html += '<li>Need a written AI policy? AIA has downloadable sample policies (short ~2pg, detailed ~6pg) under Policy, Ethics, Contracts & Legislation → <a href="' + AIA_BASE + '#policy" target="_blank" rel="noopener">' + AIA_BASE + '#policy</a></li>';
     if (aiaNeedsAssessment()) html += '<li>Haven\'t taken their 5-question maturity assessment? <a href="' + AIA_BASE + '#assessment" target="_blank" rel="noopener">' + AIA_BASE + '#assessment</a> (~2 min) — it grades a different axis than anything you did here.</li>';
+    html += '<li>Your Ownership row above is a contract question. <a href="https://termswatchdog.com" target="_blank" rel="noopener">TermsWatchdog</a> flags the data-rights language buried in vendor contracts — code <strong>TRXL25</strong> for 25% off.</li>';
     html += '</ul>';
     box.innerHTML = html;
   }
