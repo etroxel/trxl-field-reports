@@ -1,18 +1,3 @@
-/* =========================================================================
-   TRXL Episode Content — 239
-   The Next AEC Tech Stack, Arc 1 Episode 2 of 3.
-   Roundup format: one question, eleven voices, no single guest. Uses
-   `roster` instead of `guest` / `guests` — see the roster block in the HTML.
-
-   `cite` fields are timestamps into the YouTube cut. They render as links
-   that jump to the moment. Timestamps come from 239-transcript-final.md
-   (the Descript export of the actual assembled composition — real final-
-   broadcast timeline). 239-transcript.md's [MM:SS] labels are source-clip
-   timecodes from each guest's own interview, NOT final-timeline — never
-   pull a cite timestamp from that file. Never hand-adjust a cite without
-   re-checking 239-transcript-final.md.
-   ------------------------------------------------------------------------- */
-
 window.TRXL_EPISODE = {
   number: 239,
   date: "August 2026",

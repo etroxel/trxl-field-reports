@@ -1,23 +1,3 @@
-/* =========================================================================
-   TRXL Episode Content — 240
-   The Next AEC Tech Stack, Arc 1 Episode 3 of 3 — closes the arc.
-   Roundup format: two questions, eleven voices, no single guest. Uses
-   `roster` instead of `guest` / `guests` — see the roster block in the HTML.
-
-   Angle: does a new tool actually give you time back, or just give you more
-   to spend it on, before a deadline that doesn't move? (Replaces an earlier
-   draft built around "where should AI's judgment stop" — that material now
-   only appears as supporting texture, not the spine.)
-
-   `cite` fields are timestamps into the YouTube cut. They render as links
-   that jump to the moment. Timestamps come directly from
-   240-Ive-got-to-get-my-project-out-on-friday.md, which IS the assembled
-   final-composition transcript for this episode (unlike ep239, there is no
-   separate raw/final pair — this file's [HH:MM:SS] labels are already the
-   real broadcast timeline). 240-hook.md's timestamps are on a DIFFERENT
-   clock (raw pre-edit master) and must never be used here.
-   ------------------------------------------------------------------------- */
-
 window.TRXL_EPISODE = {
   number: 240,
   date: "September 2026",

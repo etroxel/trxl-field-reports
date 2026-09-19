@@ -1,15 +1,3 @@
-/* =========================================================================
-   TRXL Episode Content — 238
-   The Next AEC Tech Stack, Arc 1 Episode 1.
-   Roundup format: one question, ten voices, no single guest. Uses `roster`
-   instead of `guest` / `guests` — see the roster block in the HTML.
-
-   `cite` fields are timestamps into the YouTube cut. They render as links
-   that jump to the moment. Timestamps come from 238-transcript.md, which
-   is the final edit and matches the published chapter marks — never
-   hand-adjust one without re-checking the tape.
-   ------------------------------------------------------------------------- */
-
 window.TRXL_EPISODE = {
   number: 238,
   date: "August 2026",

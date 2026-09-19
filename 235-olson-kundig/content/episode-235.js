@@ -1,9 +1,3 @@
-/* =========================================================================
-   TRXL Episode Content — 235
-   Swap these values to re-skin the infographic for any new episode.
-   The same schema powers both the web infographic and the slide deck.
-   ------------------------------------------------------------------------- */
-
 window.TRXL_EPISODE = {
   number: 235,
   date: "July 2026",

@@ -1,8 +1,3 @@
-/* =========================================================================
-   TRXL Episode Content — 237
-   Phil Read, Read | Thomas — "The Sawtooth Chart Was Never the Enemy"
-   ------------------------------------------------------------------------- */
-
 window.TRXL_EPISODE = {
   number: 237,
   date: "August 2026",

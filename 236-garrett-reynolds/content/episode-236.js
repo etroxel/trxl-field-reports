@@ -1,8 +1,3 @@
-/* =========================================================================
-   TRXL Episode Content — 236
-   Garrett Reynolds, UpCodes — "No One Can Own the Law"
-   ------------------------------------------------------------------------- */
-
 window.TRXL_EPISODE = {
   number: 236,
   date: "August 2026",

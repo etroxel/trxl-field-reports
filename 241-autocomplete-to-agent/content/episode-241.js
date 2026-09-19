@@ -1,27 +1,3 @@
-/* =========================================================================
-   TRXL Episode Content — 241
-   The Next AEC Tech Stack, Arc 2 Episode 1 of 3 — opens the agentic-AI arc.
-   Roundup format: one question, sixteen voices, no single guest. Uses
-   `roster` instead of `guest` / `guests` — see the roster block in the HTML.
-
-   Angle: a wrapper and a harness are the same silhouette. Michael Jansen
-   says 95% of self-described AI tools are a thin skin around someone
-   else's model; Theodoros Galanos says a real AI solution is about 90%
-   harness built around that same borrowed model. Both are describing code
-   wrapped around an LLM. The episode is the inspection.
-
-   `cite` fields are timestamps into the YouTube cut. They render as links
-   that jump to the moment. Timestamps come from
-   `241 - From Autocomplete to Agent.md`, which IS the assembled final
-   composition for this episode (verified against `241-captions-final.srt`
-   and `Partner Pull-Quote Cards/241 Quotes + Timestamps.md`).
-   IMPORTANT: that transcript was RE-TIMED 2026-09-14 after a duplicate
-   Roderick Bates clip and its bridge were cut at 38:46 (everything after
-   shifted −3:25). The copy in `_pre-duplicate-fix/` is on the dead clock —
-   never cite from it. YouTube ID is MUVtq9YrNN8; the old dDRhFHFArE8 is
-   dead and must never be linked.
-   ------------------------------------------------------------------------- */
-
 window.TRXL_EPISODE = {
   number: 241,
   date: "September 2026",
