@@ -1,5 +1,11 @@
 [
   {
+    "number": 241,
+    "slug": "241-autocomplete-to-agent",
+    "title": "From Autocomplete to Agent",
+    "guest": "16 voices across 11 companies"
+  },
+  {
     "number": 240,
     "slug": "240-got-to-get-it-out",
     "title": "I've Got to Get My Project Out on Friday",
@@ -39,7 +45,7 @@
     "number": 234,
     "slug": "234-havard-vasshaug",
     "title": "Here's to the Crazy Ones",
-    "guest": "H\u00e5vard Vasshaug"
+    "guest": "Håvard Vasshaug"
   },
   {
     "number": 233,
