@@ -195,12 +195,12 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
   position: relative;
   width: min(9vw, 96px);
   aspect-ratio: 2 / 5;
-  border: 1.5px solid color-mix(in oklab, var(--ep-fg-3) 34%, transparent);
+  border: 2px solid color-mix(in oklab, var(--ep-fg-2) 55%, transparent);
   border-bottom-width: 0;
 }
 .ep242-tower::after { /* ground line */
   content: ""; position: absolute; left: -40%; right: -40%; bottom: 0;
-  height: 1.5px; background: color-mix(in oklab, var(--ep-fg-3) 45%, transparent);
+  height: 2px; background: color-mix(in oklab, var(--ep-fg-2) 55%, transparent);
 }
 /* Slabs sit in a wider box so they can project past the facade; the box is
    revealed bottom-up with a stepped clip, one floor per step. */
