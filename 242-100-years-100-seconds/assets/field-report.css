@@ -232,13 +232,12 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
 .ep242-fast .ep242-slabs { animation: ep242-fast 12s infinite; }
 .ep242-slow .ep242-slabs { animation: ep242-slow 12s infinite; }
 .ep242-label {
-  position: absolute; left: 50%; bottom: -30px;
+  position: absolute; left: 50%; bottom: -36px;
   transform: translateX(-50%);
   font-family: var(--font-mono);
-  font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--ep-fg-3);
+  font-size: 15px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ep-fg-2);
   white-space: nowrap;
-  opacity: 0.72;
 }
 .ep242-cut-grain {
   position: absolute; inset: 0;
@@ -252,7 +251,7 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
   .ep242-cut-frame { opacity: 0.55; }  /* texture, not a competing element */
   .ep242-pair { gap: min(62vw, 250px); }
   .ep242-tower { width: min(11vw, 48px); }
-  .ep242-label { bottom: -22px; font-size: 8.5px; letter-spacing: 0.12em; }
+  .ep242-label { bottom: -24px; font-size: 10px; letter-spacing: 0.12em; }
 }
 
 /* Fast: all ten floors in about a second. Slow: two floors across most of
