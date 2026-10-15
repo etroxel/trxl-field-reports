@@ -914,7 +914,7 @@ html:not(.js-motion) .ep243-room.is-origin { opacity: 1; }
   display: none;                       /* revealed by JS via .has-stack */
   grid-template-columns: 1fr;
   justify-items: center;
-  gap: 26px;
+  gap: 0;
   margin-top: 40px;
 }
 .has-stack .ep-stack-wrap { display: grid; }
@@ -923,7 +923,7 @@ html:not(.js-motion) .ep243-room.is-origin { opacity: 1; }
   position: relative;
   width: min(560px, 100%);
   height: 320px;
-  margin-bottom: 96px;                 /* room for the cards peeking out below */
+  /* margin-bottom is set by JS: the lowest visible peeking card's overhang + a fixed gap, so the controls sit the same distance under the cards at any height */
   touch-action: pan-y;                 /* page still scrolls vertically on touch */
   user-select: none;
 }

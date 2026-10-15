@@ -1182,7 +1182,7 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
   display: none;                       /* revealed by JS via .has-stack */
   grid-template-columns: 1fr;
   justify-items: center;
-  gap: 26px;
+  gap: 0;
   margin-top: 40px;
 }
 .has-stack .ep-stack-wrap { display: grid; }
@@ -1196,7 +1196,7 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
      bottom edge, which is silent (no scrollbar, no visible error) until
      someone screenshots it. Re-measure if insight copy changes. */
   height: 560px; /* measured: tallest card needs 529px at desktop (16 cards, all with prompts) */
-  margin-bottom: 96px;                 /* room for the cards peeking out below */
+  /* margin-bottom is set by JS: the lowest visible peeking card's overhang + a fixed gap, so the controls sit the same distance under the cards at any height */
   touch-action: pan-y;                 /* page still scrolls vertically on touch */
   user-select: none;
 }
