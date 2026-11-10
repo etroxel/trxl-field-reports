@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noai, noimageai">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect Ask TRXL to your AI</title>
+<style>
+  body{font:17px/1.6 system-ui,sans-serif;max-width:720px;margin:2rem auto;padding:0 1rem;color:#1a1a1a}
+  h1{font-size:1.8rem;margin-bottom:.2rem} h2{margin-top:2.2rem;border-top:1px solid #ddd;padding-top:1.2rem}
+  code,pre{background:#f4f4f4;border-radius:4px;font-size:.9em} code{padding:.1em .3em}
+  pre{padding:.8rem;overflow-x:auto} .note{background:#fff8e1;border-left:4px solid #f0b400;padding:.6rem .9rem}
+  nav a{margin-right:1rem}
+</style>
+</head>
+<body>
+<h1>Connect Ask TRXL to your AI</h1>
+<p>Ask TRXL lets your own AI assistant search the TRXL archive (episodes, Leadership Edge newsletters and Field Reports) and answer with the episode, date, speaker and a link. Setup takes about two minutes.</p>
+
+<div class="note">
+<strong>Your personal link</strong> comes in the email from Evan. It looks like this:<br>
+<code>https://dfdfouvctjkhqtlwehtk.supabase.co/functions/v1/mcp?key=YOUR_KEY</code><br>
+Treat it like a password. It's tied to your membership and can be turned off. Wherever you see <code>YOUR_KEY</code> below, use your own.
+</div>
+
+<nav><p><a href="#claude">Claude</a><a href="#chatgpt">ChatGPT</a><a href="#cursor">Cursor</a><a href="#grok">Grok</a></p></nav>
+
+<h2 id="claude">Claude (claude.ai)</h2>
+<ol>
+  <li>Settings, then Connectors, then <strong>Add custom connector</strong>.</li>
+  <li>Name it <em>Ask TRXL</em> and paste your link.</li>
+  <li>When it asks how to connect, choose the <strong>no sign-in</strong> option.</li>
+</ol>
+<p>Claude Code or another MCP app: add the link as a remote HTTP server.</p>
+
+<h2 id="chatgpt">ChatGPT</h2>
+<ol>
+  <li>Click <strong>Plugins</strong> in the sidebar at the upper left. Then click <strong>Add</strong> in the upper right and choose <strong>Add custom MCP server</strong>.</li>
+  <li>Name it <em>Ask TRXL</em> and paste your link into the Server URL box.</li>
+  <li>Change <strong>Authentication</strong> from OAuth to the no-authentication option. Leaving it on OAuth gives "Couldn't discover OAuth settings."</li>
+  <li>Tick the box that says you understand the risk, then click <strong>Create as a plugin</strong>.</li>
+</ol>
+<p>This worked on a free ChatGPT account. If you don't see Plugins, your ChatGPT may be on an older layout: look under Settings, then Connectors.</p>
+
+<h2 id="cursor">Cursor</h2>
+<ol>
+  <li>In Cursor, click <strong>Customize</strong> in the upper left and select the <strong>MCPs</strong> pill. Scroll to the bottom and click <strong>New MCP server</strong>. This opens <code>~/.cursor/mcp.json</code>. (Older versions: Cursor Settings, then Tools &amp; MCP, then Add new MCP server.)</li>
+  <li>Add this, <strong>replacing <code>YOUR_KEY</code> with the key from your personal link</strong> (the part after <code>key=</code>):
+<pre>{
+  "mcpServers": {
+    "ask-trxl": {
+      "url": "https://dfdfouvctjkhqtlwehtk.supabase.co/functions/v1/mcp",
+      "headers": { "Authorization": "Bearer YOUR_KEY" }
+    }
+  }
+}</pre></li>
+  <li>Save. <code>ask-trxl</code> should show a green dot and four tools. If not, toggle it off and on, or restart Cursor.</li>
+</ol>
+<p><strong>Red dot and no useful error?</strong> The key is almost always missing, mistyped, or still says <code>YOUR_KEY</code>. Cursor doesn't say so. Check the key first.</p>
+<p>Don't commit <code>mcp.json</code> to a repo, since it holds your key.</p>
+
+<h2 id="grok">Grok</h2>
+<ol>
+  <li>In the Grok app, click <strong>Connect Apps</strong> in the lower left, next to your account, and scroll to the bottom of the page. Click <strong>Add a custom connector</strong>.<br>
+      On the web, go to <a href="https://grok.com/connectors">grok.com/connectors</a> instead and click <strong>New Connector</strong> in the upper right, then <strong>Custom</strong>.</li>
+  <li>Name it <em>Ask TRXL</em> and paste your link into Server URL. Your key is already in the link, so there's nothing else to enter.</li>
+  <li>Click <strong>Add Connector</strong>.</li>
+</ol>
+<p>On a Grok Business or Enterprise plan, a team admin may need to enable connectors first.</p>
+
+<h2>Then try it</h2>
+<p>Start a new chat and ask: <em>"Use Ask TRXL: what can you do, and what's in the library?"</em> Then try:</p>
+<ul>
+  <li>How has talk about AI in architecture firms changed since 2021?</li>
+  <li>Who has said something about firms owning their project data, and what did they say?</li>
+  <li>What did the series partners disagree about on AI wrappers?</li>
+</ul>
+
+<h2>Make it use Ask TRXL instead of the web</h2>
+<ul>
+  <li>Start with "Use Ask TRXL to..." or "Search the TRXL archive for...". Add "Use only Ask TRXL, no web search" if it wanders.</li>
+  <li>Check the connector is switched on for that chat. A new chat can start with it off.</li>
+  <li>For a standing setup, put this in a Claude Project, a Cursor rule or your custom instructions: <em>"For anything about TRXL episodes, guests or AEC technology, search Ask TRXL first and answer from it. Don't use the web unless I ask."</em></li>
+</ul>
+
+<h2>How to read the answers</h2>
+<p>Transcript passages are speech-to-text, so your assistant should paraphrase them, not quote them. Field Report and newsletter text is Evan's own writing, and results say so. Feature Spotlight sessions are vendors demoing their own products. Every answer should carry a date, because something said in 2021 may not hold now.</p>
+
+<h2>What gets logged</h2>
+<p>Evan keeps a record of what your assistant asks the library, to see which topics people want and where the library falls short. He doesn't see your conversation, and he looks at results as totals, not by person. Please don't put client or firm details in your questions.</p>
+
+<h2>Something wrong?</h2>
+<p>Reply to Evan's email with where it was wrong or thin, and what you asked that it couldn't answer.</p>
+</body>
+</html>
